@@ -49,11 +49,13 @@
         }
 
         .nav-item {
+            display: block;
             font-size: 16px;
             color: #333;
             cursor: pointer;
             position: relative;
             padding: 10px 0;
+            text-decoration: none;
         }
 
         .nav-item.active {
@@ -77,217 +79,6 @@
         .section {
             width: 100%;
             padding: 60px 0;
-        }
-
-        .section-job-board {
-            padding: 0 0 53px;
-        }
-
-        .job-board {
-            width: 1106px;
-            height: 894px;
-            margin: 0 auto;
-            background: url('./images/job_bg.png') no-repeat center;
-            background-size: 1106px 894px;
-            padding: 118px 40px 78px 40px;
-        }
-
-        .job-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 35px;
-            margin-bottom: 30px;
-        }
-
-        .job-tab {
-            width: 430px;
-            height: 60px;
-            border: none;
-            border-radius: 30px;
-            background: #C7DCFD;
-            color: #666;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        .job-tab.is-active {
-            background: #126EF9;
-            color: #fff;
-        }
-
-        .job-panel {
-            display: flex;
-            gap: 8px;
-            align-items: stretch;
-            min-height: 560px;
-        }
-
-        .job-list {
-            width: 265px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .job-list-item {
-            width: 100%;
-            height: 50px;
-            border: none;
-            border-radius: 8px;
-            background: #EEF3FF;
-            color: #007AC3;
-            font-size: 14px;
-            font-weight: 700;
-            text-align: center;
-            padding: 0 16px;
-            cursor: pointer;
-            transition: background 0.2s ease, color 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .job-list-item.is-active {
-            background: #007AC3;
-            color: #fff;
-        }
-
-        .job-detail {
-            flex: 1;
-            display: block;
-        }
-
-        .job-openings {
-            height: 560px;
-            overflow-y: auto;
-            padding-right: 8px;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(63, 130, 196, 0.35) transparent;
-        }
-
-        .job-openings::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .job-openings::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .job-openings::-webkit-scrollbar-thumb {
-            background: rgba(63, 130, 196, 0.32);
-            border-radius: 999px;
-        }
-
-        .job-openings::-webkit-scrollbar-thumb:hover {
-            background: rgba(63, 130, 196, 0.48);
-        }
-
-        .job-detail-meta {
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .job-detail-meta strong,
-        .job-detail-section-title {
-            color: #007AC3;
-            font-size: 16px;
-            font-weight: 800;
-        }
-
-        .job-detail-section {
-            margin-top: 4px;
-        }
-
-        .job-detail-list {
-            list-style: none;
-            margin-top: 2px;
-        }
-
-        .job-opening {
-            border-radius: 6px;
-            overflow: hidden;
-            background: #EEF3FF;
-            box-shadow: 0 4px 14px rgba(57, 105, 197, 0.08);
-            margin-bottom: 14px;
-        }
-
-        .job-opening:last-child {
-            margin-bottom: 0;
-        }
-
-        .job-opening-header {
-            width: 100%;
-            height: 60px;
-            border: none;
-            background: #3f82c4;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 22px 0 32px;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .job-opening-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.5px;
-        }
-
-        .job-opening-toggle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #fff;
-            color: #3f82c4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            line-height: 1;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .job-opening-body {
-            padding: 22px 34px 28px 48px;
-            color: #333;
-            font-size: 14px;
-            line-height: 1.9;
-            font-weight: 600;
-        }
-
-        .job-empty-state {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: #666;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .job-detail-action {
-            display: flex;
-            justify-content: center;
-            margin-top: 34px;
-        }
-
-        .job-apply-btn {
-            min-width: 128px;
-            height: 36px;
-            border: none;
-            border-radius: 18px;
-            background: #3f82c4;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 0 28px;
         }
 
         .qa-container {
@@ -388,11 +179,11 @@
             <img src="./images/logo.png" alt="">
         </div>
         <div class="nav-menu">
-            <div class="nav-item">走进东吴</div>
-            <div class="nav-item">招聘公告</div>
-            <div class="nav-item">招聘岗位</div>
-            <div class="nav-item active">Q＆A</div>
-            <div class="nav-item">公司官网</div>
+            <a class="nav-item" href="./zjdongwu.html">走进东吴</a>
+            <a class="nav-item" href="./zpgonggao.html">招聘公告</a>
+            <a class="nav-item" href="./zpgangwei.html">招聘岗位</a>
+            <a class="nav-item active" href="./qa.html">Q＆A</a>
+            <a class="nav-item" href="http://www.dwzq.com.cn/" target="_blank" rel="noopener noreferrer">公司官网</a>
         </div>
     </nav>
 
