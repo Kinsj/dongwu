@@ -4,14 +4,27 @@
 //  var headElement = document.getElementsByTagName("head")[0];
 //  headElement.appendChild(show);
 
-const url = 'https://xyzp.51job.com/tcrcb2026/';
+function getShareLink() {
+  return window.location.href.split("#")[0];
+}
 
-new WechatShare({
-  link: url, //微信分享链接
-  imgUrl: url + 'images/share.jpg', //微信分享logo
-  title: '太仓农商银行2026校园招聘', //微信分享标题
-  desc: '青春百太，逐梦仓穹', //微信分享描述
-});
+function getBasePath() {
+  var shareLink = getShareLink().split("?")[0];
+  return shareLink.substring(0, shareLink.lastIndexOf("/") + 1);
+}
+
+if (
+  typeof WechatShare === "function" &&
+  typeof window !== "undefined" &&
+  window.location.protocol !== "file:"
+) {
+  new WechatShare({
+    link: getShareLink(), // 微信分享链接
+    imgUrl: getBasePath() + "images/logo.png", // 微信分享logo
+    title: document.title || "东吴证券2026校园招聘", // 微信分享标题
+    desc: "东吴证券2026校园招聘，欢迎关注招聘公告、岗位信息与申请安排。", // 微信分享描述
+  });
+}
 
 function IsPC() {
   var userAgentInfo = navigator.userAgent;

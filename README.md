@@ -79,11 +79,14 @@ public_template/
 在 `js/init.js` 中修改：
 
 ```javascript
+var shareLink = window.location.href.split('#')[0];
+var shareImage = shareLink.substring(0, shareLink.lastIndexOf('/') + 1) + 'images/logo.png';
+
 new WechatShare({
-  link: 'https://xyzp.51job.com/tcrcb2026/',    // 分享链接
-  imgUrl: 'https://xyzp.51job.com/tcrcb2026/images/share.jpg', // 分享图标
-  title: '太仓农商银行2026校园招聘',              // 分享标题
-  desc: '青春百太，逐梦仓穹',                     // 分享描述
+  link: shareLink,                               // 分享链接
+  imgUrl: shareImage,                            // 分享图标
+  title: document.title || '东吴证券2026校园招聘', // 分享标题
+  desc: '东吴证券2026校园招聘，欢迎关注招聘公告、岗位信息与申请安排。', // 分享描述
 });
 ```
 
