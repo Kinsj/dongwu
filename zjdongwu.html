@@ -492,7 +492,7 @@
 
         .honor-item .honor-source {
             font-size: 14px;
-            color: #999;
+            color: #333;
             flex-shrink: 0;
             margin-left: auto;
         }
@@ -528,30 +528,6 @@
         .honor-source {
             font-size: 14px;
             color: #999;
-        }
-
-        /* Footer */
-        .footer {
-            width: 100%;
-            height: 80px;
-            background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .footer-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(180deg, transparent 0%, #1a1a1a 100%);
-        }
-
-        .footer-text {
-            font-size: 14px;
-            color: #fff;
         }
 
         /* 图片占位 */
@@ -608,18 +584,39 @@
         <div class="rongyu-container">
             <!-- 年份按钮 -->
             <div class="honor-tabs">
-                <div class="honor-tab active">2025年</div>
-                <div class="honor-tab">2024年</div>
-                <div class="honor-tab">2023年</div>
+                <div class="honor-tab active" data-year="2025">2025年</div>
+                <div class="honor-tab" data-year="2024">2024年</div>
+                <div class="honor-tab" data-year="2023">2023年</div>
             </div>
 
-            <!-- 荣誉列表 - 双列布局 -->
-            <div class="honor-grid">
+            <!-- 荣誉列表 - 2025年 -->
+            <div class="honor-grid" id="honor-2025">
                 <div class="honor-item">
                     <img src="./images/bei.png" alt="" class="honor-icon">
                     <div class="honor-content">
-                        <span class="honor-title">第七届"全国文明单位"</span>
-                        <span class="honor-source">——中央宣传思想文化工作领导小组</span>
+                        <span class="honor-title">最佳债券承销商</span>
+                        <span class="honor-source">——上海证券交易所</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳IPO承销商</span>
+                        <span class="honor-source">——同花顺、iFinD</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">影响力研究机构</span>
+                        <span class="honor-source">——上海证券报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳券商自营团队</span>
+                        <span class="honor-source">——每日经济新闻</span>
                     </div>
                 </div>
                 <div class="honor-item">
@@ -629,14 +626,219 @@
                         <span class="honor-source">——Wind</span>
                     </div>
                 </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">金牛成长研究机构</span>
+                        <span class="honor-source">——中国证券报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">年度最佳AI与大模型应用奖</span>
+                        <span class="honor-source">——新浪财经</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">2025年度卓越文化建设证券公司</span>
+                        <span class="honor-source">——21世纪经济报道</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">数字金融创新合作</span>
+                        <span class="honor-source">——同花顺</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">第七届"全国文明单位"</span>
+                        <span class="honor-source">——中央宣传思想文化工作领导小组</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 荣誉列表 - 2024年 -->
+            <div class="honor-grid" id="honor-2024" style="display: none;">
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳AI与大模型应用奖</span>
+                        <span class="honor-source">——新浪财经</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳主板注册制承销商</span>
+                        <span class="honor-source">——Wind</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳北交所承销商</span>
+                        <span class="honor-source">——证券时报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳REITs承销商</span>
+                        <span class="honor-source">——新财富</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">金牛IPO承销商</span>
+                        <span class="honor-source">——中国证券报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最具成长研究机构</span>
+                        <span class="honor-source">——上海证券报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最具影响力证券研究机构</span>
+                        <span class="honor-source">——财新</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳北交所研究服务奖</span>
+                        <span class="honor-source">——同花顺</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">ESG实践案例征集优秀案例</span>
+                        <span class="honor-source">——中国证券业协会</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">证券行业数字化转型先锋奖</span>
+                        <span class="honor-source">——中国证券业协会</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 荣誉列表 - 2023年 -->
+            <div class="honor-grid" id="honor-2023" style="display: none;">
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳AI与大模型应用奖</span>
+                        <span class="honor-source">——新浪财经</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳主板注册制承销商</span>
+                        <span class="honor-source">——Wind</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳北交所承销商</span>
+                        <span class="honor-source">——证券时报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳REITs承销商</span>
+                        <span class="honor-source">——新财富</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">金牛IPO承销商</span>
+                        <span class="honor-source">——中国证券报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最具成长研究机构</span>
+                        <span class="honor-source">——上海证券报</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最具影响力证券研究机构</span>
+                        <span class="honor-source">——财新</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">最佳北交所研究服务奖</span>
+                        <span class="honor-source">——同花顺</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">ESG实践案例征集优秀案例</span>
+                        <span class="honor-source">——中国证券业协会</span>
+                    </div>
+                </div>
+                <div class="honor-item">
+                    <img src="./images/bei.png" alt="" class="honor-icon">
+                    <div class="honor-content">
+                        <span class="honor-title">证券行业数字化转型先锋奖</span>
+                        <span class="honor-source">——中国证券业协会</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-text">Copyright © 51job. All Rights Reserved.</div>
+    <footer class="footer" style="margin-top: -300px">
+        <img src="./images/footer.png" alt="" style="display:block; width: 100%;">
     </footer>
+
+    <script>
+        document.querySelectorAll('.honor-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                // 移除所有 tab 的 active 类
+                document.querySelectorAll('.honor-tab').forEach(function (t) {
+                    t.classList.remove('active');
+                });
+                // 给当前点击的 tab 添加 active 类
+                this.classList.add('active');
+
+                // 隐藏所有 honor-grid
+                document.querySelectorAll('.honor-grid').forEach(function (grid) {
+                    grid.style.display = 'none';
+                });
+
+                // 显示对应年份的 honor-grid
+                var year = this.getAttribute('data-year');
+                document.getElementById('honor-' + year).style.display = 'flex';
+            });
+        });
+    </script>
 </body>
 
 </html>
