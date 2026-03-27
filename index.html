@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东吴证券 2026 春季实习生招聘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-width: 1200px;
+            background: #0f5298;
+        }
+
+        body {
+            font-family: 'Source Han Sans SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        .landing {
+            position: relative;
+            width: 100%;
+            min-width: 1200px;
+            height: 100vh;
+            min-height: 760px;
+            overflow: hidden;
+            background: url('./images/pc_enter.png') no-repeat top center;
+            background-size: 100% auto;
+        }
+
+        .enter-btn {
+            position: absolute;
+            left: 50%;
+            margin-top: 18vw;
+            transform: translateX(-50%);
+            display: block;
+            width: 15vw;
+            min-width: 180px;
+            height: 100px;
+            background: url('./images/pc_enter_btn.png') no-repeat center center;
+            background-size: contain;
+            text-indent: -9999px;
+            overflow: hidden;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            html,
+            body {
+                min-width: 0;
+                overflow-x: hidden;
+            }
+
+            .landing {
+                min-width: 0;
+                min-height: 100svh;
+                height: 100svh;
+                background: url('./images/mobile_enter.png') no-repeat top center;
+                background-size: 100% auto;
+            }
+
+            .enter-btn {
+                margin-top: 93vw;
+                width: 59vw;
+                height: 26vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="landing">
+        <a class="enter-btn" href="./zjdongwu.html"></a>
+    </main>
+</body>
+
+</html>
