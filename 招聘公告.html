@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>招聘公告 - 东吴证券2026春季实习生招聘</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #edf4ff;
+            color: #333;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-viewport {
+            --artboard-width: 1440;
+            --artboard-height: 3288;
+            --page-scale: 1;
+            width: 100%;
+            min-height: calc(var(--artboard-height) * 1px);
+            padding: 20px 0 36px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .page-shell {
+            position: relative;
+            width: calc(var(--artboard-width) * 1px);
+            height: calc(var(--artboard-height) * 1px);
+            transform: scale(var(--page-scale));
+            transform-origin: top center;
+            background:
+                radial-gradient(circle at 50% 10%, rgba(255,255,255,0.85), rgba(255,255,255,0.15) 30%, transparent 55%),
+                linear-gradient(180deg, #f7fbff 0%, #d9e8fb 36%, #d7e3f5 100%);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(40, 92, 164, 0.12);
+        }
+
+        .page-shell::before {
+            content: "";
+            position: absolute;
+            left: -180px;
+            right: -180px;
+            bottom: -120px;
+            height: 460px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255,255,255,0.95) 0, rgba(255,255,255,0.38) 38%, transparent 62%),
+                linear-gradient(180deg, rgba(52, 122, 227, 0) 0%, rgba(52, 122, 227, 0.08) 30%, rgba(23, 92, 212, 0.26) 100%);
+            pointer-events: none;
+        }
+
+        .page-shell::after {
+            content: "";
+            position: absolute;
+            inset: auto -6% -4% -6%;
+            height: 320px;
+            background:
+                linear-gradient(165deg, rgba(21, 87, 214, 0.12) 0%, rgba(21, 87, 214, 0.02) 38%, rgba(255,255,255,0) 48%),
+                linear-gradient(12deg, rgba(33, 122, 255, 0.55) 0%, rgba(57, 153, 255, 0.14) 42%, rgba(255,255,255,0) 70%);
+            border-radius: 50% 50% 0 0 / 78% 78% 0 0;
+            pointer-events: none;
+        }
+
+        .group-box {
+            position: absolute;
+            border-radius: 28px;
+            pointer-events: none;
+        }
+
+        .group-box--nav {
+            border-radius: 0;
+            background: rgba(255,255,255,0.94);
+            border-bottom: 1px solid rgba(28, 99, 192, 0.08);
+        }
+
+        .group-box--banner {
+            background:
+                radial-gradient(circle at 50% 54%, rgba(255,255,255,0.98) 0, rgba(255,255,255,0.72) 24%, rgba(255,255,255,0.1) 54%, rgba(0,0,0,0) 74%),
+                linear-gradient(180deg, rgba(72, 181, 255, 0.22) 0%, rgba(255,255,255,0.92) 48%, rgba(80, 138, 224, 0.2) 100%);
+            border-radius: 0 0 18px 18px;
+        }
+
+        .group-box--footer {
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(83, 154, 255, 0.18) 18%, rgba(44, 118, 226, 0.48) 100%);
+            border-radius: 0;
+        }
+
+        .group-box--panel {
+            background: rgba(255,255,255,0.92);
+            box-shadow: 0 12px 24px rgba(35, 92, 170, 0.08);
+        }
+
+        .group-box--subpanel {
+            background: rgba(241, 246, 255, 0.86);
+            border: 1px solid rgba(46, 112, 221, 0.08);
+            border-radius: 16px;
+        }
+
+        .asset-slot {
+            position: absolute;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 8px 10px;
+            overflow: hidden;
+            border: 1px dashed rgba(40, 108, 210, 0.45);
+            border-radius: 14px;
+            color: rgba(29, 94, 186, 0.8);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.92), rgba(225,238,255,0.78));
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .asset-slot--pixel {
+            background:
+                linear-gradient(135deg, rgba(239, 246, 255, 0.95), rgba(205, 224, 249, 0.85));
+        }
+
+        .asset-slot span {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.72);
+        }
+
+        .text-layer {
+            position: absolute;
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .is-active-nav {
+            font-weight: 700 !important;
+            color: #007ac3 !important;
+        }
+
+        .is-active-nav::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -16px;
+            width: 38px;
+            height: 4px;
+            transform: translateX(-50%);
+            background: #0194ff;
+            border-radius: 999px;
+        }
+
+        @media (max-width: 1520px) {
+            .page-viewport {
+                align-items: flex-start;
+                min-height: calc(var(--artboard-height) * var(--page-scale) * 1px + 56px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-viewport" data-artboard-width="1440" data-artboard-height="3288">
+        <main class="page-shell">
+        <div class="group-box group-box--nav" data-group="导航" style="left:0px;top:0px;width:1440px;height:102px;"></div>
+        <div class="group-box group-box--panel" data-group="公司介绍" style="left:178px;top:759px;width:1084px;height:994px;"></div>
+        <div class="group-box group-box--panel" data-group="招聘计划" style="left:228px;top:881px;width:991px;height:824px;"></div>
+        <div class="group-box group-box--panel" data-group="公司介绍" style="left:179px;top:1786px;width:1082px;height:923px;"></div>
+        <div class="group-box group-box--panel" data-group="需求" style="left:235px;top:1919px;width:970px;height:346px;"></div>
+        <div class="group-box group-box--panel" data-group="需求" style="left:261px;top:2345px;width:942px;height:315px;"></div>
+        <div class="group-box group-box--footer" data-group="footer" style="left:0px;top:2563px;width:1440px;height:725px;"></div>
+        <div class="group-box group-box--panel" data-group="招聘流程" style="left:179px;top:2738px;width:1082px;height:371px;"></div>
+        <div class="group-box group-box--subpanel" data-group="组 1" style="left:228px;top:975px;width:471px;height:174px;"></div>
+        <div class="group-box group-box--subpanel" data-group="组 1" style="left:748px;top:975px;width:471px;height:174px;"></div>
+        <div class="group-box group-box--subpanel" data-group="组 1" style="left:228px;top:1192px;width:471px;height:174px;"></div>
+        <div class="group-box group-box--subpanel" data-group="组 1" style="left:748px;top:1192px;width:471px;height:174px;"></div>
+        <div class="group-box group-box--subpanel" data-group="组 4" style="left:469px;top:1586px;width:384px;height:119px;"></div>
+        <div class="group-box group-box--subpanel" data-group="公司介绍" style="left:179px;top:2738px;width:1082px;height:371px;"></div>
+        
+        <div id="asset-026" class="asset-slot asset-slot--smartobject" data-layer-name="logo" style="left:180px;top:30px;width:183px;height:40px;"><span>logo</span></div>
+        <div id="asset-004" class="asset-slot asset-slot--smartobject" data-layer-name="组 21" style="left:2px;top:100px;width:1438px;height:600px;"><span>组 21</span></div>
+        <div id="asset-003" class="asset-slot asset-slot--pixel" data-layer-name="图层 712" style="left:0px;top:606px;width:1440px;height:441px;"><span>图层 712</span></div>
+        <div id="asset-005" class="asset-slot asset-slot--smartobject" data-layer-name="duiwu (1)" style="left:244px;top:1036px;width:147px;height:135px;"><span>duiwu (1)</span></div>
+        <div id="asset-006" class="asset-slot asset-slot--smartobject" data-layer-name="hezuo" style="left:1035px;top:1036px;width:173px;height:146px;"><span>hezuo</span></div>
+        <div id="asset-007" class="asset-slot asset-slot--smartobject" data-layer-name="changyongtubiao-xianxingdaochu-zhuanqu-" style="left:242px;top:1245px;width:153px;height:132px;"><span>changyongtubiao-xianxingdaochu-zhuanqu-</span></div>
+        <div id="asset-008" class="asset-slot asset-slot--smartobject" data-layer-name="donglihuanjing" style="left:1065px;top:1255px;width:142px;height:135px;"><span>donglihuanjing</span></div>
+        <div id="asset-010" class="asset-slot asset-slot--smartobject" data-layer-name="多用户" style="left:486px;top:1570px;width:51px;height:43px;"><span>多用户</span></div>
+        <div id="asset-014" class="asset-slot asset-slot--smartobject" data-layer-name="单翅膀-copy" style="left:919px;top:1571px;width:40px;height:51px;"><span>单翅膀-copy</span></div>
+        <div id="asset-012" class="asset-slot asset-slot--smartobject" data-layer-name="翻书" style="left:703px;top:1576px;width:47px;height:46px;"><span>翻书</span></div>
+        <div id="asset-009" class="asset-slot asset-slot--smartobject" data-layer-name="椭圆 734" style="left:515px;top:1592px;width:71px;height:70px;"><span>椭圆 734</span></div>
+        <div id="asset-011" class="asset-slot asset-slot--smartobject" data-layer-name="椭圆 734" style="left:731px;top:1592px;width:71px;height:70px;"><span>椭圆 734</span></div>
+        <div id="asset-013" class="asset-slot asset-slot--smartobject" data-layer-name="椭圆 734" style="left:947px;top:1592px;width:71px;height:70px;"><span>椭圆 734</span></div>
+        <div id="asset-015" class="asset-slot asset-slot--smartobject" data-layer-name="renshu" style="left:316px;top:2031px;width:51px;height:45px;"><span>renshu</span></div>
+        <div id="asset-017" class="asset-slot asset-slot--smartobject" data-layer-name="gangwei" style="left:699px;top:2032px;width:46px;height:46px;"><span>gangwei</span></div>
+        <div id="asset-016" class="asset-slot asset-slot--smartobject" data-layer-name="zhuanye" style="left:1083px;top:2038px;width:53px;height:42px;"><span>zhuanye</span></div>
+        <div id="asset-018" class="asset-slot asset-slot--smartobject" data-layer-name="renshu" style="left:316px;top:2457px;width:51px;height:45px;"><span>renshu</span></div>
+        <div id="asset-020" class="asset-slot asset-slot--smartobject" data-layer-name="gangwei" style="left:699px;top:2458px;width:46px;height:46px;"><span>gangwei</span></div>
+        <div id="asset-019" class="asset-slot asset-slot--smartobject" data-layer-name="zhuanye" style="left:1083px;top:2464px;width:53px;height:42px;"><span>zhuanye</span></div>
+        <div id="asset-002" class="asset-slot asset-slot--smartobject" data-layer-name="查看图片" style="left:0px;top:2563px;width:1440px;height:725px;"><span>查看图片</span></div>
+        <div id="asset-025" class="asset-slot asset-slot--smartobject" data-layer-name="kaohe 副本" style="left:1137px;top:2891px;width:37px;height:43px;"><span>kaohe 副本</span></div>
+        <div id="asset-023" class="asset-slot asset-slot--smartobject" data-layer-name="dangan 副本" style="left:719px;top:2892px;width:41px;height:42px;"><span>dangan 副本</span></div>
+        <div id="asset-024" class="asset-slot asset-slot--smartobject" data-layer-name="shixi 副本" style="left:938px;top:2892px;width:42px;height:42px;"><span>shixi 副本</span></div>
+        <div id="asset-022" class="asset-slot asset-slot--smartobject" data-layer-name="矢量智能对象 副本 6" style="left:498px;top:2894px;width:42px;height:41px;"><span>矢量智能对象 副本 6</span></div>
+        <div id="asset-021" class="asset-slot asset-slot--smartobject" data-layer-name="矢量智能对象 副本 8" style="left:290px;top:2895px;width:40px;height:38px;"><span>矢量智能对象 副本 8</span></div>
+        <a class="text-layer is-active-nav" style="left:844px;top:40px;width:71px;height:18px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:32.4px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:left;" data-layer-name="招聘公告" href="招聘公告.html">招聘公告</a>
+        <a class="text-layer" style="left:730px;top:41px;width:72px;height:18px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:400;line-height:32.4px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:left;" data-layer-name="走进东吴" href="走进东吴.html">走进东吴</a>
+        <a class="text-layer" style="left:972px;top:41px;width:71px;height:18px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:400;line-height:32.4px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:left;" data-layer-name=" 招聘岗位" href="招聘岗位.html"> 招聘岗位</a>
+        <a class="text-layer" style="left:1092px;top:41px;width:41px;height:18px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:400;line-height:32.4px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:left;" data-layer-name="Q＆A" href="Q&A.html">Q＆A</a>
+        <div class="text-layer" style="left:1183px;top:41px;width:70px;height:18px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:400;line-height:32.4px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:left;" data-layer-name="公司官网">公司官网</div>
+        <div class="text-layer" style="left:259px;top:797px;width:142px;height:35px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:48.0px;font-weight:700;line-height:53.76px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:left;" data-layer-name="招聘计划">招聘计划</div>
+        <div class="text-layer" style="left:418px;top:819px;width:165px;height:13px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:300;line-height:32.4px;color:rgba(153, 153, 153, 0.5020);opacity:0.502;text-align:left;" data-layer-name="Recruitment plan">Recruitment plan</div>
+        <div class="text-layer" style="left:441px;top:881px;width:559px;height:48px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:21.33px;font-weight:400;line-height:24.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="东吴X计划，是东吴证券精心打造的实习生项目 其中X代表“星生代”，“新征程”，“欣力量”，“心动力”的拼音首字母简称。 ">东吴X计划，是东吴证券精心打造的实习生项目
+其中X代表“星生代”，“新征程”，“欣力量”，“心动力”的拼音首字母简称。
+</div>
+        <div class="text-layer" style="left:467px;top:1015px;width:71px;height:23px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:32.4px;color:rgba(4, 96, 167, 1.0000);opacity:1.0;text-align:center;" data-layer-name="星生代">星生代</div>
+        <div class="text-layer" style="left:911px;top:1015px;width:71px;height:24px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:32.4px;color:rgba(4, 96, 167, 1.0000);opacity:1.0;text-align:center;" data-layer-name="新征程">新征程</div>
+        <div class="text-layer" style="left:865px;top:1068px;width:164px;height:44px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:21.33px;font-weight:400;line-height:22.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="开启一段新的职业征程， 东吴与您携手共进。">开启一段新的职业征程，
+东吴与您携手共进。</div>
+        <div class="text-layer" style="left:388px;top:1069px;width:229px;height:43px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:21.33px;font-weight:400;line-height:21.5px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="打造一支“星生代”队伍， 为东吴的基业长青注入新的活力。">打造一支“星生代”队伍，
+为东吴的基业长青注入新的活力。</div>
+        <div class="text-layer" style="left:467px;top:1229px;width:71px;height:24px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:32.4px;color:rgba(4, 96, 167, 1.0000);opacity:1.0;text-align:center;" data-layer-name="欣力量">欣力量</div>
+        <div class="text-layer" style="left:910px;top:1230px;width:70px;height:23px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:32.4px;color:rgba(4, 96, 167, 1.0000);opacity:1.0;text-align:center;" data-layer-name="心动力">心动力</div>
+        <div class="text-layer" style="left:395px;top:1282px;width:214px;height:44px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:21.33px;font-weight:400;line-height:22.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="提供一站式培养计划， 从校园新人到东吴的欣欣力量。">提供一站式培养计划，
+从校园新人到东吴的欣欣力量。</div>
+        <div class="text-layer" style="left:824px;top:1282px;width:246px;height:44px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:21.33px;font-weight:400;line-height:22.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="凝聚一股团队心动力， 用心做好每一步，成就未来一大步。">凝聚一股团队心动力，
+用心做好每一步，成就未来一大步。</div>
+        <div class="text-layer" style="left:577px;top:1408px;width:288px;height:50px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:25.0px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:center;" data-layer-name="丰富多样的新员工培养计划 精准赋能每位新员工的职业发展路径">丰富多样的新员工培养计划
+精准赋能每位新员工的职业发展路径</div>
+        <div class="text-layer" style="left:611px;top:1586px;width:9px;height:9px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:16.0px;font-weight:700;line-height:21.6px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="+">+</div>
+        <div class="text-layer" style="left:844px;top:1586px;width:9px;height:9px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:16.0px;font-weight:700;line-height:21.6px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="+ 拷贝">+</div>
+        <div class="text-layer" style="left:469px;top:1688px;width:65px;height:17px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:16.0px;font-weight:700;line-height:21.6px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="融入之行">融入之行</div>
+        <div class="text-layer" style="left:700px;top:1688px;width:64px;height:17px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:16.0px;font-weight:700;line-height:21.6px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="亮剑之旅">亮剑之旅</div>
+        <div class="text-layer" style="left:931px;top:1688px;width:63px;height:17px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:16.0px;font-weight:700;line-height:21.6px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="明日之翼">明日之翼</div>
+        <div class="text-layer" style="left:259px;top:1824px;width:143px;height:35px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:48.0px;font-weight:700;line-height:53.76px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:left;" data-layer-name="招聘需求">招聘需求</div>
+        <div class="text-layer" style="left:418px;top:1846px;width:178px;height:13px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:300;line-height:32.4px;color:rgba(153, 153, 153, 0.5020);opacity:0.502;text-align:left;" data-layer-name="RECRUITMENT NEEDS">RECRUITMENT NEEDS</div>
+        <div class="text-layer" style="left:660px;top:1919px;width:119px;height:29px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:40.22px;font-weight:700;line-height:45.04px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:left;" data-layer-name="东吴证券">东吴证券</div>
+        <div class="text-layer" style="left:235px;top:2143px;width:211px;height:91px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.05px;font-weight:700;line-height:30.33px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="招聘人数 总部7个部门，16个岗位， 共62人。">招聘人数
+总部7个部门，16个岗位，
+共62人。</div>
+        <div class="text-layer" style="left:487px;top:2143px;width:470px;height:122px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.05px;font-weight:700;line-height:30.5px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="招聘岗位 投资银行业务管理委员会、固定收益业务委员会、 研究所、债券投资总部、资产管理总部、 信息技术总部、博士后创新实践基地">招聘岗位
+投资银行业务管理委员会、固定收益业务委员会、
+研究所、债券投资总部、资产管理总部、
+信息技术总部、博士后创新实践基地共7个部门16个岗位。</div>
+        <div class="text-layer" style="left:1000px;top:2143px;width:205px;height:91px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.05px;font-weight:700;line-height:30.33px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="招聘专业 经济、金融、财会、统计、 计算机等理工科专业。">招聘专业
+经济、金融、财会、统计、
+计算机等理工科专业。</div>
+        <div class="text-layer" style="left:544px;top:2345px;width:357px;height:29px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:40.22px;font-weight:700;line-height:45.04px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:left;" data-layer-name="东吴证券子公司-东吴基金">东吴证券子公司-东吴基金</div>
+        <div class="text-layer" style="left:261px;top:2569px;width:159px;height:61px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.05px;font-weight:700;line-height:30.5px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="招聘人数 3个岗位，共10人。">招聘人数
+3个岗位，共10人。</div>
+        <div class="text-layer" style="left:519px;top:2569px;width:405px;height:60px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.05px;font-weight:700;line-height:30.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="招聘岗位 行业研究岗、机构销售岗、渠道销售岗共3个岗位。">招聘岗位
+行业研究岗、机构销售岗、渠道销售岗共3个岗位。</div>
+        <div class="text-layer" style="left:1005px;top:2569px;width:198px;height:91px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.05px;font-weight:700;line-height:30.33px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="招聘专业 经济、金融、市场营销等 相关理工科专业。">招聘专业
+经济、金融、市场营销等
+相关理工科专业。</div>
+        <div class="text-layer" style="left:259px;top:2776px;width:143px;height:35px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:48.0px;font-weight:700;line-height:53.76px;color:rgba(0, 122, 195, 1.0000);opacity:1.0;text-align:left;" data-layer-name="招聘流程">招聘流程</div>
+        <div class="text-layer" style="left:418px;top:2799px;width:200px;height:13px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:300;line-height:32.4px;color:rgba(153, 153, 153, 0.5020);opacity:0.502;text-align:left;" data-layer-name="Recruitment process">Recruitment process</div>
+        <div class="text-layer" style="left:238px;top:2982px;width:143px;height:62px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:31.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="在线投递简历 (5月21日截止)">在线投递简历
+(5月21日截止)</div>
+        <div class="text-layer" style="left:470px;top:2982px;width:99px;height:60px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:30.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="笔、面试 （5月中旬起）">笔、面试
+（5月中旬起）</div>
+        <div class="text-layer" style="left:912px;top:2983px;width:94px;height:60px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:30.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="实习考察 （1-3个月）">实习考察
+（1-3个月）</div>
+        <div class="text-layer" style="left:1095px;top:2983px;width:121px;height:60px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:30.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="实习转正 （预计9月开始）">实习转正
+（预计9月开始）</div>
+        <div class="text-layer" style="left:658px;top:2984px;width:163px;height:60px;font-family:'Source Han Sans SC', 'SourceHanSansSC-Regular', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;font-size:24.0px;font-weight:700;line-height:30.0px;color:rgba(51, 51, 51, 1.0000);opacity:1.0;text-align:center;" data-layer-name="实习offer发送 （6月上旬起）">实习offer发送
+（6月上旬起）</div>
+        <div class="text-layer" style="left:598px;top:3229px;width:243px;height:15px;font-family:'Noto Sans SC', 'NotoSansCJKsc-Regular', 'Microsoft YaHei', sans-serif;font-size:18.0px;font-weight:400;line-height:24.3px;color:rgba(255, 255, 255, 1.0000);opacity:1.0;text-align:left;" data-layer-name="Copyright © 51job. All Rights Reserved. ">Copyright © 51job. All Rights Reserved. </div>
+        </main>
+    </div>
+    <script>
+        (function () {
+            const viewport = document.querySelector(".page-viewport");
+            const shell = document.querySelector(".page-shell");
+            if (!viewport || !shell) return;
+
+            const artboardWidth = Number(viewport.dataset.artboardWidth || 1440);
+            const artboardHeight = Number(viewport.dataset.artboardHeight || 3200);
+
+            function resizePage() {
+                const available = Math.max(window.innerWidth - 24, 320);
+                const scale = Math.min(1, available / artboardWidth);
+                viewport.style.setProperty("--page-scale", String(scale));
+                viewport.style.minHeight = (artboardHeight * scale + 56) + "px";
+            }
+
+            resizePage();
+            window.addEventListener("resize", resizePage, { passive: true });
+        })();
+    </script>
+</body>
+</html>
