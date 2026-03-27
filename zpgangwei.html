@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>招聘岗位 - 东吴证券</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Han Sans SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background: #d4e0f3;
+            min-width: 1200px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            width: 100%;
+            height: 80px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-item {
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-item.active {
+            color: #007AC3;
+            font-weight: 600;
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 12px;
+            background: url('./images/active_nav.png') no-repeat center;
+            background-size: contain;
+        }
+
+        /* 通用区块样式 */
+        .section {
+            width: 100%;
+            padding: 60px 0;
+        }
+
+        .section-job-board {
+            padding: 0 0 53px;
+        }
+
+        .job-board {
+            width: 1106px;
+            height: 894px;
+            margin: 0 auto;
+            background: url('./images/job_bg.png') no-repeat center;
+            background-size: 1106px 894px;
+            padding: 118px 40px 78px 40px;
+        }
+
+        .job-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        .job-tab {
+            width: 430px;
+            height: 60px;
+            border: none;
+            border-radius: 30px;
+            background: #C7DCFD;
+            color: #666;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .job-tab.is-active {
+            background: #126EF9;
+            color: #fff;
+        }
+
+        .job-panel {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+            min-height: 490px;
+        }
+
+        .job-list {
+            width: 265px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .job-list-item {
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 8px;
+            background: #EEF3FF;
+            color: #007AC3;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 16px;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .job-list-item.is-active {
+            background: #007AC3;
+            color: #fff;
+        }
+
+        .job-detail {
+            flex: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #dfe9f9;
+            box-shadow: 0 4px 14px rgba(57, 105, 197, 0.08);
+        }
+
+        .job-detail-header {
+            height: 60px;
+            background: #3f82c4;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 22px 0 24px;
+        }
+
+        .job-detail-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .job-detail-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #fff;
+            color: #3f82c4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .job-detail-body {
+            min-height: 438px;
+            padding: 22px 34px 28px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.9;
+            font-weight: 600;
+        }
+
+        .job-detail-meta {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .job-detail-meta strong,
+        .job-detail-section-title {
+            color: #007AC3;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .job-detail-section {
+            margin-top: 4px;
+        }
+
+        .job-detail-list {
+            list-style: none;
+            margin-top: 2px;
+        }
+
+        .job-detail-action {
+            display: flex;
+            justify-content: center;
+            margin-top: 34px;
+        }
+
+        .job-apply-btn {
+            min-width: 128px;
+            height: 36px;
+            border: none;
+            border-radius: 18px;
+            background: #3f82c4;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0 28px;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="./images/logo.png" alt="">
+        </div>
+        <div class="nav-menu">
+            <div class="nav-item">走进东吴</div>
+            <div class="nav-item">招聘公告</div>
+            <div class="nav-item active">招聘岗位</div>
+            <div class="nav-item">Q＆A</div>
+            <div class="nav-item">公司官网</div>
+        </div>
+    </nav>
+
+    <!-- Banner - 整图 -->
+    <section class="banner">
+        <img src="./images/banner.png" alt="共享共赢 敢创未来" style="display:block;width: 100%; min-width: 1200px">
+    </section>
+
+    <!-- 应聘条件 - 整图 -->
+    <section class="section" style="margin-top: -296px; padding: 0;">
+        <img src="./images/yptj.png" alt="应聘条件" style="display:block;">
+    </section>
+
+    <!-- 招聘需求 -->
+    <section class="section section-job-board">
+        <div class="job-board">
+            <div class="job-tabs" id="jobTabs"></div>
+            <div class="job-panel">
+                <div class="job-list" id="jobList"></div>
+                <div class="job-detail">
+                    <div class="job-detail-header">
+                        <div class="job-detail-title" id="jobDetailTitle"></div>
+                        <div class="job-detail-toggle">−</div>
+                    </div>
+                    <div class="job-detail-body" id="jobDetailBody"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: -300px;">
+        <img src="./images/footer.png" alt="" style="display:block; width: 100%;">
+    </footer>
+
+    <script>
+        const jobData = [
+            {
+                tab: '东吴证券',
+                positions: [
+                    {
+                        name: '投资银行业务管理委员会',
+                        title: '投行经理助理（10名，上海、北京、深圳等地）',
+                        major: '经济、金融、财会、法律或生物医药、TMT、地产等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '负责积极研究学习投行业务流程及相关法规制度；',
+                            '负责协助做好项目承做工作，与客户、其他中介机构及监管单位进行有效沟通；',
+                            '配合完成团队的其他相关工作。'
+                        ],
+                        requirements: [
+                            '硕士研究生及以上学历，经济、金融、财会、法律或生物医药、TMT、地产等相关专业，具有投行、会计、律师实习经验者优先；',
+                            '具备较强的组织、沟通和综合协调能力，有良好的团队合作精神，能够吃苦耐劳，适应长期出差；',
+                            '通过注册会计师、法律职业资格等专业技能考试者优先。'
+                        ]
+                    },
+                    {
+                        name: '固定收益业务管理委员会',
+                        title: '固定收益分析助理（6名，上海、苏州）',
+                        major: '金融工程、数学、统计、经济学等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '协助开展利率、信用及产品研究，整理市场跟踪材料；',
+                            '参与债券发行与承销项目的材料准备及数据分析；',
+                            '支持部门日常运营和跨团队协作事项。'
+                        ],
+                        requirements: [
+                            '具备扎实的数据分析能力，熟悉 Excel、Wind 或同类金融工具；',
+                            '逻辑清晰，具备较强的学习能力、执行能力和抗压能力；',
+                            '有固定收益、信用研究、量化分析相关实习经历者优先。'
+                        ]
+                    },
+                    {
+                        name: '研究所',
+                        title: '行业研究助理（8名，上海、北京）',
+                        major: '经济、金融、医药、电子、计算机、机械等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '协助完成行业与公司研究，参与撰写日报、深度及专题报告；',
+                            '整理产业链数据和访谈纪要，维护研究数据库；',
+                            '配合研究员完成路演、会议及其他研究支持工作。'
+                        ],
+                        requirements: [
+                            '对资本市场和研究工作有较强兴趣，具备良好的文字表达能力；',
+                            '善于信息搜集和结构化整理，责任心强；',
+                            '有行业研究或咨询实习经验者优先。'
+                        ]
+                    },
+                    {
+                        name: '债券投资总部',
+                        title: '债券交易助理（4名，上海）',
+                        major: '金融、经济、数学、统计等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '协助跟踪债券市场走势，完成交易复盘和策略资料整理；',
+                            '支持产品估值、交易数据统计及日报输出；',
+                            '参与部门安排的其他业务支持工作。'
+                        ],
+                        requirements: [
+                            '对债券交易和宏观市场有基本认知，数据敏感度高；',
+                            '做事细致稳健，具备较强责任意识和团队协同能力；',
+                            '具备 VBA、Python 或其他数据处理能力者优先。'
+                        ]
+                    },
+                    {
+                        name: '资产管理总部',
+                        title: '资管产品助理（5名，上海、苏州）',
+                        major: '金融、经济、会计、法律等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '协助推进资产管理产品设立、运营及材料准备；',
+                            '参与产品净值跟踪、信息披露和客户服务支持；',
+                            '配合完成部门安排的专项研究与流程优化工作。'
+                        ],
+                        requirements: [
+                            '具有较强的文字撰写和沟通能力，做事条理清晰；',
+                            '熟悉资管产品基础知识，有相关实习经历者优先；',
+                            '具备较强责任心与执行力。'
+                        ]
+                    },
+                    {
+                        name: '信息技术总部',
+                        title: '应用开发工程师（12名，苏州、上海）',
+                        major: '计算机、软件工程、信息安全、电子信息等相关专业',
+                        education: '本科及以上',
+                        responsibilities: [
+                            '参与公司核心业务系统开发、测试与上线支持；',
+                            '协助优化系统性能和稳定性，完成技术文档编写；',
+                            '配合团队推进数字化项目建设。'
+                        ],
+                        requirements: [
+                            '熟悉 Java、Python、前端或数据库中的至少一类技术栈；',
+                            '具备良好的问题分析和沟通协作能力；',
+                            '有证券、金融科技或大型系统开发项目经历者优先。'
+                        ]
+                    },
+                    {
+                        name: '规划创新部（博士后创新实践基地）',
+                        title: '博士后研究人员（若干，苏州）',
+                        major: '金融学、经济学、数学、统计学、计算机等相关专业',
+                        education: '博士研究生',
+                        responsibilities: [
+                            '围绕证券行业创新、金融科技、财富管理等方向开展研究；',
+                            '参与重点课题、模型搭建及成果转化工作；',
+                            '为公司业务创新与战略决策提供研究支持。'
+                        ],
+                        requirements: [
+                            '具备独立研究能力和较强的项目推进能力；',
+                            '在相关领域有论文、课题或项目成果者优先；',
+                            '能够持续关注行业趋势并形成高质量研究输出。'
+                        ]
+                    }
+                ]
+            },
+            {
+                tab: '东吴证券子公司 - 东吴基金',
+                positions: [
+                    {
+                        name: '基金投资部',
+                        title: '投资研究助理（5名，上海）',
+                        major: '金融、经济、统计、数学等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '协助跟踪宏观、行业和公司基本面，形成研究材料；',
+                            '参与基金组合分析、归因及投后跟踪；',
+                            '支持部门其他日常研究和项目工作。'
+                        ],
+                        requirements: [
+                            '具备较强的数据处理和逻辑分析能力；',
+                            '对公募基金行业有兴趣，工作细致认真；',
+                            '有研究所、公募基金、券商相关实习经历者优先。'
+                        ]
+                    },
+                    {
+                        name: '产品与营销部',
+                        title: '产品运营助理（4名，上海）',
+                        major: '金融、市场营销、管理、传播等相关专业',
+                        education: '本科及以上',
+                        responsibilities: [
+                            '协助基金产品材料制作、活动执行和渠道沟通；',
+                            '参与产品推广、数据统计及客户运营工作；',
+                            '支持跨部门项目协同。'
+                        ],
+                        requirements: [
+                            '表达能力较强，能够独立推进多线程事项；',
+                            '对基金产品和财富管理业务有基础认知；',
+                            '有品牌、产品或运营实习经验者优先。'
+                        ]
+                    },
+                    {
+                        name: '风险管理部',
+                        title: '风险控制助理（3名，上海）',
+                        major: '金融工程、统计、数学、会计、法律等相关专业',
+                        education: '硕士研究生',
+                        responsibilities: [
+                            '协助开展投资风险、合规风险的监测与分析；',
+                            '整理风控报表，参与制度和流程优化；',
+                            '配合内外部检查及专项风险排查。'
+                        ],
+                        requirements: [
+                            '具备较强的风险意识与数据分析能力；',
+                            '工作严谨，具有良好的沟通协调能力；',
+                            '有基金、证券、审计或合规相关实习经历者优先。'
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const jobTabs = document.getElementById('jobTabs');
+        const jobList = document.getElementById('jobList');
+        const jobDetailTitle = document.getElementById('jobDetailTitle');
+        const jobDetailBody = document.getElementById('jobDetailBody');
+
+        let activeTabIndex = 0;
+        let activePositionIndex = 0;
+
+        function renderTabs() {
+            jobTabs.innerHTML = jobData.map((item, index) => `
+                <button class="job-tab ${index === activeTabIndex ? 'is-active' : ''}" data-tab-index="${index}">
+                    ${item.tab}
+                </button>
+            `).join('');
+        }
+
+        function renderList() {
+            const currentTab = jobData[activeTabIndex];
+            jobList.innerHTML = currentTab.positions.map((item, index) => `
+                <button class="job-list-item ${index === activePositionIndex ? 'is-active' : ''}" data-position-index="${index}">
+                    ${item.name}
+                </button>
+            `).join('');
+        }
+
+        function renderDetail() {
+            const detail = jobData[activeTabIndex].positions[activePositionIndex];
+            jobDetailTitle.textContent = detail.title;
+            jobDetailBody.innerHTML = `
+                <div class="job-detail-meta"><strong>专业名称：</strong>${detail.major}</div>
+                <div class="job-detail-meta"><strong>学历要求：</strong>${detail.education}</div>
+                <div class="job-detail-section">
+                    <div class="job-detail-section-title">岗位职责：</div>
+                    <ul class="job-detail-list">
+                        ${detail.responsibilities.map((item, index) => `<li>${index + 1}. ${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="job-detail-section">
+                    <div class="job-detail-section-title">岗位要求：</div>
+                    <ul class="job-detail-list">
+                        ${detail.requirements.map((item, index) => `<li>${index + 1}. ${item}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="job-detail-action">
+                    <button class="job-apply-btn" type="button">立即申请</button>
+                </div>
+            `;
+        }
+
+        function renderJobBoard() {
+            renderTabs();
+            renderList();
+            renderDetail();
+        }
+
+        jobTabs.addEventListener('click', function (event) {
+            const button = event.target.closest('[data-tab-index]');
+            if (!button) {
+                return;
+            }
+            activeTabIndex = Number(button.dataset.tabIndex);
+            activePositionIndex = 0;
+            renderJobBoard();
+        });
+
+        jobList.addEventListener('click', function (event) {
+            const button = event.target.closest('[data-position-index]');
+            if (!button) {
+                return;
+            }
+            activePositionIndex = Number(button.dataset.positionIndex);
+            renderList();
+            renderDetail();
+        });
+
+        renderJobBoard();
+    </script>
+</body>
+
+</html>
