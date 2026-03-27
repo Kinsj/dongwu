@@ -121,7 +121,7 @@
             display: flex;
             gap: 8px;
             align-items: stretch;
-            min-height: 490px;
+            min-height: 560px;
         }
 
         .job-list {
@@ -156,50 +156,32 @@
 
         .job-detail {
             flex: 1;
-            border-radius: 6px;
-            overflow: hidden;
-            background: #dfe9f9;
-            box-shadow: 0 4px 14px rgba(57, 105, 197, 0.08);
+            display: block;
         }
 
-        .job-detail-header {
-            height: 60px;
-            background: #3f82c4;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 22px 0 24px;
+        .job-openings {
+            height: 560px;
+            overflow-y: auto;
+            padding-right: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(63, 130, 196, 0.35) transparent;
         }
 
-        .job-detail-title {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+        .job-openings::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .job-detail-toggle {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #fff;
-            color: #3f82c4;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            line-height: 1;
-            font-weight: 700;
-            flex-shrink: 0;
+        .job-openings::-webkit-scrollbar-track {
+            background: transparent;
         }
 
-        .job-detail-body {
-            min-height: 438px;
-            padding: 22px 34px 28px;
-            color: #333;
-            font-size: 14px;
-            line-height: 1.9;
-            font-weight: 600;
+        .job-openings::-webkit-scrollbar-thumb {
+            background: rgba(63, 130, 196, 0.32);
+            border-radius: 999px;
+        }
+
+        .job-openings::-webkit-scrollbar-thumb:hover {
+            background: rgba(63, 130, 196, 0.48);
         }
 
         .job-detail-meta {
@@ -221,6 +203,72 @@
         .job-detail-list {
             list-style: none;
             margin-top: 2px;
+        }
+
+        .job-opening {
+            border-radius: 6px;
+            overflow: hidden;
+            background: #EEF3FF;
+            box-shadow: 0 4px 14px rgba(57, 105, 197, 0.08);
+            margin-bottom: 14px;
+        }
+
+        .job-opening:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-opening-header {
+            width: 100%;
+            height: 60px;
+            border: none;
+            background: #3f82c4;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 22px 0 32px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .job-opening-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .job-opening-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            color: #3f82c4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .job-opening-body {
+            padding: 22px 34px 28px 48px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.9;
+            font-weight: 600;
+        }
+
+        .job-empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-size: 16px;
+            font-weight: 600;
         }
 
         .job-detail-action {
@@ -281,13 +329,7 @@
             <div class="job-tabs" id="jobTabs"></div>
             <div class="job-panel">
                 <div class="job-list" id="jobList"></div>
-                <div class="job-detail">
-                    <div class="job-detail-header">
-                        <div class="job-detail-title" id="jobDetailTitle"></div>
-                        <div class="job-detail-toggle">−</div>
-                    </div>
-                    <div class="job-detail-body" id="jobDetailBody"></div>
-                </div>
+                <div class="job-detail" id="jobDetailBody"></div>
             </div>
         </div>
     </section>
@@ -301,170 +343,388 @@
         const jobData = [
             {
                 tab: '东吴证券',
-                positions: [
+                departments: [
                     {
-                        name: '投资银行业务管理委员会',
-                        title: '投行经理助理（10名，上海、北京、深圳等地）',
-                        major: '经济、金融、财会、法律或生物医药、TMT、地产等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '负责积极研究学习投行业务流程及相关法规制度；',
-                            '负责协助做好项目承做工作，与客户、其他中介机构及监管单位进行有效沟通；',
-                            '配合完成团队的其他相关工作。'
+                        name: '信息技术总部',
+                        title: '信息技术总部（10名）',
+                        positions: [
+                            {
+                                title: '信息技术总部 AI算法工程师（5名，上海、苏州）',
+                                major: '计算机科学、数学、统计学等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责配合AI 算法的研究与设计，包括但不限于机器学习、深度学习算法，优化现有算法模型，提升算法性能和效率；',
+                                    '收集、整理和分析大量数据，构建高质量的数据集，进行数据预处理，为算法训练提供支持；',
+                                    '配合模型训练与优化，使用 Python、TensorFlow、PyTorch 等框架，进行模型训练、调优和评估，确保模型的准确性和稳定性；',
+                                    '深度参与落地业务系统相关的算法设计、模型训练与优化工作，输出成果并撰写报告。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，计算机科学、数学、统计学等相关专业；',
+                                    '精通 Python 编程，熟悉机器学习、深度学习算法，如 CNN、RNN等，熟练使用 TensorFlow、PyTorch 等深度学习框架；',
+                                    '具有 AI 算法相关项目经验，能够独立完成算法设计、模型训练和优化工作，有实际应用案例者优先；',
+                                    '具备良好的数据处理和分析能力，熟悉 SQL、Pandas 等数据处理工具；',
+                                    '对新技术有强烈的学习兴趣和好奇心，具备快速学习和应用新知识的能力。'
+                                ]
+                            },
+                            {
+                                title: '信息技术总部 AI开发工程师（5名，上海、苏州）',
+                                major: '计算机科学等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责研究AI大模型，利用国内外最新论文，开源技术，训练、微调国产大模型；',
+                                    '学习人工智能应用开发技术，利用成熟的前后端开发技术，参与AI应用赋能项目开发工作；',
+                                    '深度参与业务系统AI开发工作，包括但不限于系统搭建、算法优化，以及后续长期的运维保障工作；',
+                                    '参与技术方案、技术文档、课题研究材料编写工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，计算机科学等相关专业；',
+                                    '熟练掌握 Python 或 Java 编程语言，熟悉常用的数据结构和算法，具备良好的代码编写习惯；',
+                                    '熟悉 AI 开发流程，了解机器学习、深度学习基本原理，掌握至少一种深度学习框架，如 TensorFlow 或 PyTorch；',
+                                    '具有独立分析和解决问题能力，勤于思考，主观能动性强，自我驱动。'
+                                ]
+                            }
                         ],
-                        requirements: [
-                            '硕士研究生及以上学历，经济、金融、财会、法律或生物医药、TMT、地产等相关专业，具有投行、会计、律师实习经验者优先；',
-                            '具备较强的组织、沟通和综合协调能力，有良好的团队合作精神，能够吃苦耐劳，适应长期出差；',
-                            '通过注册会计师、法律职业资格等专业技能考试者优先。'
-                        ]
                     },
                     {
                         name: '固定收益业务管理委员会',
-                        title: '固定收益分析助理（6名，上海、苏州）',
-                        major: '金融工程、数学、统计、经济学等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '协助开展利率、信用及产品研究，整理市场跟踪材料；',
-                            '参与债券发行与承销项目的材料准备及数据分析；',
-                            '支持部门日常运营和跨团队协作事项。'
-                        ],
-                        requirements: [
-                            '具备扎实的数据分析能力，熟悉 Excel、Wind 或同类金融工具；',
-                            '逻辑清晰，具备较强的学习能力、执行能力和抗压能力；',
-                            '有固定收益、信用研究、量化分析相关实习经历者优先。'
-                        ]
-                    },
-                    {
-                        name: '研究所',
-                        title: '行业研究助理（8名，上海、北京）',
-                        major: '经济、金融、医药、电子、计算机、机械等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '协助完成行业与公司研究，参与撰写日报、深度及专题报告；',
-                            '整理产业链数据和访谈纪要，维护研究数据库；',
-                            '配合研究员完成路演、会议及其他研究支持工作。'
-                        ],
-                        requirements: [
-                            '对资本市场和研究工作有较强兴趣，具备良好的文字表达能力；',
-                            '善于信息搜集和结构化整理，责任心强；',
-                            '有行业研究或咨询实习经验者优先。'
+                        title: '固定收益业务管理委员会（10名）',
+                        positions: [
+                            {
+                                title: '固定收益业务管理委员会 债券承做助理（10名，上海、北京）',
+                                major: '经济、数学、计算机、财会、法律等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助项目经理开展公司债券、资产证券化、非金融企业债务融资工具等项目承做工作；',
+                                    '协助项目经理开展债券项目的尽职调查、方案设计、工作底稿及申报材料编制等工作；',
+                                    '完成部门交办的其他工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，经济、数学、计算机、财会、法律等相关专业；',
+                                    '具有良好的文字写作能力、扎实的财务会计基础，具有注册会计师、律师资格证书优先；',
+                                    '具有其他券商债券承做、四大会计师事务所、国内知名律所等实习经历者优先；',
+                                    '吃苦耐劳，认真负责，具有较高的工作执行效率、强烈的进取心和责任感。'
+                                ]
+                            }
                         ]
                     },
                     {
                         name: '债券投资总部',
-                        title: '债券交易助理（4名，上海）',
-                        major: '金融、经济、数学、统计等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '协助跟踪债券市场走势，完成交易复盘和策略资料整理；',
-                            '支持产品估值、交易数据统计及日报输出；',
-                            '参与部门安排的其他业务支持工作。'
-                        ],
-                        requirements: [
-                            '对债券交易和宏观市场有基本认知，数据敏感度高；',
-                            '做事细致稳健，具备较强责任意识和团队协同能力；',
-                            '具备 VBA、Python 或其他数据处理能力者优先。'
+                        title: '债券投资总部（5名）',
+                        positions: [
+                            {
+                                title: '债券投资总部 销售交易助理（5名，上海）',
+                                major: '金融、经济、会计等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助对接国内各大银行、保险、基金和证券公司等金融机构，积极跟踪、挖掘交易机会，负责各类中间业务的询价和交易执行；',
+                                    '协助开发并维护市场机构交易对手，维护客户资源；',
+                                    '配合固定收益类业务模式的创新和探索；',
+                                    '完成部门交办的其他工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，金融、经济、会计等相关专业；',
+                                    '具有较强的沟通表达能力、较强的独立思考能力、逻辑推理能力以及良好的创新和团队合作精神；',
+                                    '吃苦耐劳，抗压能力强，执行力强。'
+                                ]
+                            }
                         ]
                     },
                     {
                         name: '资产管理总部',
-                        title: '资管产品助理（5名，上海、苏州）',
-                        major: '金融、经济、会计、法律等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '协助推进资产管理产品设立、运营及材料准备；',
-                            '参与产品净值跟踪、信息披露和客户服务支持；',
-                            '配合完成部门安排的专项研究与流程优化工作。'
+                        title: '资产管理总部（5名）',
+                        positions: [
+                            {
+                                title: '资产管理总部 研究助理（1名，上海）',
+                                major: '数学、计算机、金融工程、金融、经济等相关专业，复合专业背景优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责协助向研究及投资团队提供债券交易、多资产策略开发、主观量化策略开发等，主要包括：交易型债券策略的研发、转债及多资产策略的研发；',
+                                    '负责协助业务资料制作、数据收集整理，撰写相关报告；',
+                                    '完成部门交办的其他工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，数学、计算机、金融工程、金融、经济等相关专业，复合专业背景优先；',
+                                    '具备扎实的数学及工程学基础；',
+                                    '具有良好的数理逻辑以及学习能力，具备一定的编程能力，精通Python等技术；',
+                                    '乐于与人沟通、身体健康，能独立开展研究工作，工作有激情，具有抗压能力。'
+                                ]
+                            },
+                            {
+                                title: '资产管理总部 渠道销售助理（4名，上海）',
+                                major: '专业不限',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责协助资管产品及业务销售推动；',
+                                    '负责协助各类客户及代销渠道拓展和维护；',
+                                    '完成部门安排的其他工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，专业不限；',
+                                    '对资本市场及各类金融产品有一定的了解和认识；',
+                                    '具备较好的表达能力和沟通能力，工作有激情，抗压能力强。'
+                                ]
+                            }
                         ],
-                        requirements: [
-                            '具有较强的文字撰写和沟通能力，做事条理清晰；',
-                            '熟悉资管产品基础知识，有相关实习经历者优先；',
-                            '具备较强责任心与执行力。'
+                    },
+                    {
+                        name: '投资银行业务管理委员会',
+                        title: '投资银行业务管理委员会（10名）',
+                        positions: [
+                            {
+                                title: '投资银行业务管理委员会 投行经理助理（10名，上海、北京、深圳等地）',
+                                major: '经济、金融、财会、法律或生物医药、TMT、地产等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责积极研究学习投行业务流程及相关法规制度；',
+                                    '负责协助做好项目承做工作，与客户、其他中介机构及监管单位进行有效沟通；',
+                                    '配合完成团队的其他相关工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，经济、金融、财会、法律或生物医药、TMT、地产等相关专业，具有投行、会计、律师实习经验者优先；',
+                                    '具备较强的组织、沟通和综合协调能力，有良好的团队合作精神，能吃苦耐劳，适应长期出差；',
+                                    '通过注册会计师、法律职业资格等专业技能考试者优先。'
+                                ]
+                            }
                         ]
                     },
                     {
-                        name: '信息技术总部',
-                        title: '应用开发工程师（12名，苏州、上海）',
-                        major: '计算机、软件工程、信息安全、电子信息等相关专业',
-                        education: '本科及以上',
-                        responsibilities: [
-                            '参与公司核心业务系统开发、测试与上线支持；',
-                            '协助优化系统性能和稳定性，完成技术文档编写；',
-                            '配合团队推进数字化项目建设。'
-                        ],
-                        requirements: [
-                            '熟悉 Java、Python、前端或数据库中的至少一类技术栈；',
-                            '具备良好的问题分析和沟通协作能力；',
-                            '有证券、金融科技或大型系统开发项目经历者优先。'
+                        name: '研究所',
+                        title: '研究所（20名）',
+                        positions: [
+                            {
+                                title: '研究所 机构销售助理（5名，上海、北京、深圳）',
+                                major: '金融、财务等相关专业优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责收集整理研究观点，如每日晨会的行业及个股观点等；',
+                                    '协助销售安排研究员路演、公司反路演、策略会等常规服务；',
+                                    '协助销售组织产业链实地调研及其他定制化活动；',
+                                    '协助完成其他日常工作，如服务记录整理、财务报销、翻译等。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，金融、财务等相关专业优先；',
+                                    '具有券商、银行、信托、大型三方理财机构销售实习经验者优先；',
+                                    '做事细心负责，具备良好的职业操守及较强的人际交往、沟通和组织协调能力，具备良好的团队协作精神，形象气质较好，性格外向，能够胜任强度较大的工作；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（大金融）（1名，上海、北京）',
+                                major: '金融、经济、财务等相关专业优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助研究员进行数据及资料搜集整理和分析、数据库更新等工作；',
+                                    '协助研究员进行公司调研纪要、会议纪要等材料的撰写及发布；',
+                                    '参与撰写日报周报、公司点评、系统课题等报告；',
+                                    '参与撰写行业研究、公司深度及专题研究等报告；',
+                                    '完成其他日常辅助性工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，金融、经济、财务等相关专业优先；',
+                                    '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    '大金融行业细分子领域：有非银行金融、银行、建筑建材、房地产等。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（大消费）（3名，上海）',
+                                major: '财务、金融、经济等相关专业，投递医药行业的同学有医学/生物学/药学等专业背景优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助研究员进行数据及资料搜集整理和分析、数据库更新等工作；',
+                                    '协助研究员进行公司调研纪要、会议纪要等材料的撰写及发布；',
+                                    '参与撰写日报周报、公司点评、系统课题等报告；',
+                                    '参与撰写行业研究、公司深度及专题研究等报告；',
+                                    '完成其他日常辅助性工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，财务、金融、经济等相关专业，投递医药行业的同学有医学/生物学/药学等专业背景优先；',
+                                    '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    '大消费行业细分子领域：有医药、食品饮料、批发零售与社会服务、纺织服装&轻工&家电等。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（上游能源）（3名，上海）',
+                                major: '能源、自动化及金融、财务等相关专业，复合专业背景优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助研究员进行数据及资料搜集整理和分析、数据库更新等工作；',
+                                    '协助研究员进行公司调研纪要、会议纪要等材料的撰写及发布；',
+                                    '参与撰写日报周报、公司点评、系统课题等报告；',
+                                    '参与撰写行业研究、公司深度及专题研究等报告；',
+                                    '完成其他日常辅助性工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，能源、自动化及金融、财务等相关专业，复合专业背景优先；',
+                                    '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    '上游能源行业细分子领域：有电力设备新能源、汽车、煤炭&钢铁有色、能源化工等。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（价值制造）（3名，上海）',
+                                major: '机械、军工、自动化及金融、财务等相关专业，复合专业背景优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助研究员进行数据及资料搜集整理和分析、数据库更新等工作；',
+                                    '协助研究员进行公司调研纪要、会议纪要等材料的撰写及发布；',
+                                    '参与撰写日报周报、公司点评、系统课题等报告；',
+                                    '参与撰写行业研究、公司深度及专题研究等报告；',
+                                    '完成其他日常辅助性工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，机械、军工、自动化及金融、财务等相关专业，复合专业背景优先；',
+                                    '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    '价值制造行业细分子领域：有环保&公用事业、机械、军工等。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（总量研究）（1名，上海、北京、深圳）',
+                                major: '数学、量化、金融、经济等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助研究员进行数据及资料搜集整理和分析、数据库更新等工作；',
+                                    '参与整理会议纪要，课题、专题报告的撰写工作；',
+                                    '参与撰写日报周报、系统课题等报告；',
+                                    '按时完成组内布置的工作、遵循部门日常管理。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，数学、量化、金融、经济等相关专业优先；',
+                                    '具有良好的英语基础，熟练使用wind、Bloomberg，具有CPA、CFA等相关职业资格证书者优先考虑；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    '总量研究细分子领域：有宏观、策略、固定收益等。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（TMT）（3名，上海、北京）',
+                                major: '理工科、金融及财务等相关专业，复合专业背景优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '协助研究员进行数据及资料搜集整理和分析、数据库更新等工作；',
+                                    '协助研究员进行公司调研纪要、会议纪要等材料的撰写及发布；',
+                                    '参与撰写日报周报、公司点评、系统课题等报告；',
+                                    '参与撰写行业研究、公司深度及专题研究等报告；',
+                                    '完成其他日常辅助性工作。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，理工科、金融及财务等相关专业，复合专业背景优先；',
+                                    '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    'TMT行业细分子领域：有传媒互联网及海外研究、电子、计算机、通信等。'
+                                ]
+                            },
+                            {
+                                title: '研究所 研究助理（金融工程）（1名，上海）',
+                                major: '数学、物理、工程学、金融数学、金融工程等相关专业，复合专业背景优先',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '实习协助的金融工程研究领域有：大类资产配置、量化选股、基金产品研究分析、衍生品研究等；',
+                                    '为研究员提供金融数据支持，收集原始数据并进行加工整理，完成初步分析；',
+                                    '在相关的实习研究领域，协助研究员与团队合作完成课题。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，数学、物理、工程学、金融数学、金融工程等相关专业，复合专业背景优先；',
+                                    '熟练使用办公软件，至少熟练掌握一门计算机编程语言(Python、R、Matlab等)；',
+                                    '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
+                                    '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
+                                    '细分子领域有金融工程、金融产品等。'
+                                ]
+                            }
                         ]
                     },
                     {
                         name: '规划创新部（博士后创新实践基地）',
-                        title: '博士后研究人员（若干，苏州）',
-                        major: '金融学、经济学、数学、统计学、计算机等相关专业',
-                        education: '博士研究生',
-                        responsibilities: [
-                            '围绕证券行业创新、金融科技、财富管理等方向开展研究；',
-                            '参与重点课题、模型搭建及成果转化工作；',
-                            '为公司业务创新与战略决策提供研究支持。'
-                        ],
-                        requirements: [
-                            '具备独立研究能力和较强的项目推进能力；',
-                            '在相关领域有论文、课题或项目成果者优先；',
-                            '能够持续关注行业趋势并形成高质量研究输出。'
+                        title: '规划创新部（2名）',
+                        positions: [
+                            {
+                                title: '博士后创新实践基地 博士后研究员（2名，上海、苏州）',
+                                major: '经济、金融及理工相关专业，复合专业背景优先',
+                                education: '博士研究生',
+                                responsibilities: [
+                                    '研究方向与课题：',
+                                    '证券行业生成式人工智能技术基础研究与应用探索；',
+                                    '资本市场政策理论研究；',
+                                    '区域产业经济创新研究；',
+                                    '证券行业高质量发展研究；',
+                                    '区块链在证券行业中的落地应用；',
+                                    '证券公司风险评估和预警研究；',
+                                    '权益及其衍生品市场统计套利模型与算法交易策略研究。'
+                                ],
+                                requirements: [
+                                    '应届博士研究生，或毕业不超过三年的往届博士毕业生；',
+                                    '具有较强的研究能力和敬业精神，能够尽职尽责地完成博士后科研工作；',
+                                    '具备全脱产在本站从事博士后研究工作的条件；',
+                                    '具有金融从业经验、复合专业背景者优先。'
+                                ]
+                            }
                         ]
                     }
                 ]
             },
             {
                 tab: '东吴证券子公司 - 东吴基金',
-                positions: [
+                departments: [
                     {
-                        name: '基金投资部',
-                        title: '投资研究助理（5名，上海）',
-                        major: '金融、经济、统计、数学等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '协助跟踪宏观、行业和公司基本面，形成研究材料；',
-                            '参与基金组合分析、归因及投后跟踪；',
-                            '支持部门其他日常研究和项目工作。'
-                        ],
-                        requirements: [
-                            '具备较强的数据处理和逻辑分析能力；',
-                            '对公募基金行业有兴趣，工作细致认真；',
-                            '有研究所、公募基金、券商相关实习经历者优先。'
-                        ]
-                    },
-                    {
-                        name: '产品与营销部',
-                        title: '产品运营助理（4名，上海）',
-                        major: '金融、市场营销、管理、传播等相关专业',
-                        education: '本科及以上',
-                        responsibilities: [
-                            '协助基金产品材料制作、活动执行和渠道沟通；',
-                            '参与产品推广、数据统计及客户运营工作；',
-                            '支持跨部门项目协同。'
-                        ],
-                        requirements: [
-                            '表达能力较强，能够独立推进多线程事项；',
-                            '对基金产品和财富管理业务有基础认知；',
-                            '有品牌、产品或运营实习经验者优先。'
-                        ]
-                    },
-                    {
-                        name: '风险管理部',
-                        title: '风险控制助理（3名，上海）',
-                        major: '金融工程、统计、数学、会计、法律等相关专业',
-                        education: '硕士研究生',
-                        responsibilities: [
-                            '协助开展投资风险、合规风险的监测与分析；',
-                            '整理风控报表，参与制度和流程优化；',
-                            '配合内外部检查及专项风险排查。'
-                        ],
-                        requirements: [
-                            '具备较强的风险意识与数据分析能力；',
-                            '工作严谨，具有良好的沟通协调能力；',
-                            '有基金、证券、审计或合规相关实习经历者优先。'
+                        name: '东吴基金',
+                        title: '东吴基金校园招聘岗位',
+                        positions: [
+                            {
+                                title: '东吴基金行业研究岗（2名，上海）',
+                                major: '经济金融及理工科类专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责相关行业主要上市公司的研究、调研与分析，撰写研究报告，为投资团队提供投资建议支持；',
+                                    '对重点标的公司进行深度调研、日常跟踪，及时提醒个股投资机会和风险，与投资人员保持密切联动；',
+                                    '把握所负责行业的发展趋势，为基金投资的行业配置策略提供建议。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，经济金融及理工科类专业，复合背景优先；',
+                                    '热爱研究工作，具备较强的研究分析能力和行业洞察力，有相关行业研究实习经历者优先；',
+                                    '勤奋努力有韧劲，能够独立思考、快速学习，具备较强的语言表达能力和主动沟通意识。'
+                                ]
+                            },
+                            {
+                                title: '东吴基金机构销售岗（4名，上海、北京、深圳）',
+                                major: '经济、金融、市场营销等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责维护、开拓机构客户，推动公司基金产品的营销工作；',
+                                    '落实公司产品发行与持营的销售策略与市场推广计划；',
+                                    '为机构客户提供专业咨询、路演等服务，满足客户需求；',
+                                    '开展投资者教育活动，传播基金理财知识，增强客户满意度。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，经济、金融、市场营销等相关专业；',
+                                    '具备扎实的经济金融理论基础，擅长演讲表达以及活动组织；',
+                                    '积极乐观，性格外向，具有较强的人际交往能力；',
+                                    '具备较强的抗压能力和团队合作精神，能接受经常性出差拜访客户。'
+                                ]
+                            },
+                            {
+                                title: '东吴基金渠道销售岗（4名，上海、北京、深圳）',
+                                major: '经济、金融、市场营销等相关专业',
+                                education: '硕士研究生',
+                                responsibilities: [
+                                    '负责渠道客户及销售渠道的开拓、维护与服务工作，推动公司产品营销；',
+                                    '落实公司产品发行与持营的销售策略与市场推广计划；',
+                                    '为渠道客户提供专业咨询、路演等服务，满足客户需求；',
+                                    '开展投资者教育活动，传播基金理财知识，增强客户满意度。'
+                                ],
+                                requirements: [
+                                    '硕士研究生及以上学历，经济、金融、市场营销等相关专业；',
+                                    '具备扎实的经济金融理论基础，擅长演讲表达以及活动组织；',
+                                    '积极乐观，性格外向，具有较强的人际交往能力；',
+                                    '具备较强的抗压能力和团队合作精神，能接受经常性出差拜访客户。'
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -473,11 +733,11 @@
 
         const jobTabs = document.getElementById('jobTabs');
         const jobList = document.getElementById('jobList');
-        const jobDetailTitle = document.getElementById('jobDetailTitle');
         const jobDetailBody = document.getElementById('jobDetailBody');
 
         let activeTabIndex = 0;
         let activePositionIndex = 0;
+        let expandedOpeningIndexes = [0];
 
         function renderTabs() {
             jobTabs.innerHTML = jobData.map((item, index) => `
@@ -489,7 +749,11 @@
 
         function renderList() {
             const currentTab = jobData[activeTabIndex];
-            jobList.innerHTML = currentTab.positions.map((item, index) => `
+            if (!currentTab.departments.length) {
+                jobList.innerHTML = '';
+                return;
+            }
+            jobList.innerHTML = currentTab.departments.map((item, index) => `
                 <button class="job-list-item ${index === activePositionIndex ? 'is-active' : ''}" data-position-index="${index}">
                     ${item.name}
                 </button>
@@ -497,25 +761,48 @@
         }
 
         function renderDetail() {
-            const detail = jobData[activeTabIndex].positions[activePositionIndex];
-            jobDetailTitle.textContent = detail.title;
+            const currentTab = jobData[activeTabIndex];
+            const department = currentTab.departments[activePositionIndex];
+
+            if (!department) {
+                jobDetailBody.innerHTML = '<div class="job-empty-state">当前没有可展示的岗位资料</div>';
+                return;
+            }
+
             jobDetailBody.innerHTML = `
-                <div class="job-detail-meta"><strong>专业名称：</strong>${detail.major}</div>
-                <div class="job-detail-meta"><strong>学历要求：</strong>${detail.education}</div>
-                <div class="job-detail-section">
-                    <div class="job-detail-section-title">岗位职责：</div>
-                    <ul class="job-detail-list">
-                        ${detail.responsibilities.map((item, index) => `<li>${index + 1}. ${item}</li>`).join('')}
-                    </ul>
-                </div>
-                <div class="job-detail-section">
-                    <div class="job-detail-section-title">岗位要求：</div>
-                    <ul class="job-detail-list">
-                        ${detail.requirements.map((item, index) => `<li>${index + 1}. ${item}</li>`).join('')}
-                    </ul>
-                </div>
-                <div class="job-detail-action">
-                    <button class="job-apply-btn" type="button">立即申请</button>
+                <div class="job-openings">
+                    ${department.positions.map((position, index) => {
+                const isExpanded = expandedOpeningIndexes.includes(index);
+                return `
+                        <div class="job-opening">
+                            <button class="job-opening-header" type="button" data-opening-index="${index}">
+                                <span class="job-opening-title">${position.title}</span>
+                                <span class="job-opening-toggle">${isExpanded ? '−' : '+'}</span>
+                            </button>
+                            ${isExpanded ? `
+                            <div class="job-opening-body">
+                                <div class="job-detail-meta"><strong>专业名称：</strong>${position.major}</div>
+                                <div class="job-detail-meta"><strong>学历要求：</strong>${position.education}</div>
+                                <div class="job-detail-section">
+                                    <div class="job-detail-section-title">岗位职责：</div>
+                                    <ul class="job-detail-list">
+                                        ${position.responsibilities.map((item, itemIndex) => `<li>${itemIndex + 1}. ${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="job-detail-section">
+                                    <div class="job-detail-section-title">岗位要求：</div>
+                                    <ul class="job-detail-list">
+                                        ${position.requirements.map((item, itemIndex) => `<li>${itemIndex + 1}. ${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="job-detail-action">
+                                    <button class="job-apply-btn" type="button">立即申请</button>
+                                </div>
+                            </div>
+                            ` : ''}
+                        </div>
+                        `;
+            }).join('')}
                 </div>
             `;
         }
@@ -533,6 +820,7 @@
             }
             activeTabIndex = Number(button.dataset.tabIndex);
             activePositionIndex = 0;
+            expandedOpeningIndexes = [0];
             renderJobBoard();
         });
 
@@ -542,7 +830,24 @@
                 return;
             }
             activePositionIndex = Number(button.dataset.positionIndex);
+            expandedOpeningIndexes = [0];
             renderList();
+            renderDetail();
+        });
+
+        jobDetailBody.addEventListener('click', function (event) {
+            const button = event.target.closest('[data-opening-index]');
+            if (!button) {
+                return;
+            }
+
+            const openingIndex = Number(button.dataset.openingIndex);
+            if (expandedOpeningIndexes.includes(openingIndex)) {
+                expandedOpeningIndexes = [];
+            } else {
+                expandedOpeningIndexes = [openingIndex];
+            }
+
             renderDetail();
         });
 
