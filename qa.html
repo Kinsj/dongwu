@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q & A - 东吴证券</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Han Sans SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            background: #d4e0f3;
+            min-width: 1200px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            width: 100%;
+            height: 80px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-item {
+            font-size: 16px;
+            color: #333;
+            cursor: pointer;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-item.active {
+            color: #007AC3;
+            font-weight: 600;
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 12px;
+            background: url('./images/active_nav.png') no-repeat center;
+            background-size: contain;
+        }
+
+        /* 通用区块样式 */
+        .section {
+            width: 100%;
+            padding: 60px 0;
+        }
+
+        .section-job-board {
+            padding: 0 0 53px;
+        }
+
+        .job-board {
+            width: 1106px;
+            height: 894px;
+            margin: 0 auto;
+            background: url('./images/job_bg.png') no-repeat center;
+            background-size: 1106px 894px;
+            padding: 118px 40px 78px 40px;
+        }
+
+        .job-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        .job-tab {
+            width: 430px;
+            height: 60px;
+            border: none;
+            border-radius: 30px;
+            background: #C7DCFD;
+            color: #666;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .job-tab.is-active {
+            background: #126EF9;
+            color: #fff;
+        }
+
+        .job-panel {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+            min-height: 560px;
+        }
+
+        .job-list {
+            width: 265px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .job-list-item {
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 8px;
+            background: #EEF3FF;
+            color: #007AC3;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 16px;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .job-list-item.is-active {
+            background: #007AC3;
+            color: #fff;
+        }
+
+        .job-detail {
+            flex: 1;
+            display: block;
+        }
+
+        .job-openings {
+            height: 560px;
+            overflow-y: auto;
+            padding-right: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(63, 130, 196, 0.35) transparent;
+        }
+
+        .job-openings::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .job-openings::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .job-openings::-webkit-scrollbar-thumb {
+            background: rgba(63, 130, 196, 0.32);
+            border-radius: 999px;
+        }
+
+        .job-openings::-webkit-scrollbar-thumb:hover {
+            background: rgba(63, 130, 196, 0.48);
+        }
+
+        .job-detail-meta {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .job-detail-meta strong,
+        .job-detail-section-title {
+            color: #007AC3;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .job-detail-section {
+            margin-top: 4px;
+        }
+
+        .job-detail-list {
+            list-style: none;
+            margin-top: 2px;
+        }
+
+        .job-opening {
+            border-radius: 6px;
+            overflow: hidden;
+            background: #EEF3FF;
+            box-shadow: 0 4px 14px rgba(57, 105, 197, 0.08);
+            margin-bottom: 14px;
+        }
+
+        .job-opening:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-opening-header {
+            width: 100%;
+            height: 60px;
+            border: none;
+            background: #3f82c4;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 22px 0 32px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .job-opening-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .job-opening-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            color: #3f82c4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            line-height: 1;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .job-opening-body {
+            padding: 22px 34px 28px 48px;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.9;
+            font-weight: 600;
+        }
+
+        .job-empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .job-detail-action {
+            display: flex;
+            justify-content: center;
+            margin-top: 34px;
+        }
+
+        .job-apply-btn {
+            min-width: 128px;
+            height: 36px;
+            border: none;
+            border-radius: 18px;
+            background: #3f82c4;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0 28px;
+        }
+
+        .qa-container {
+            width: 1106px;
+            height: 2200px;
+            margin: 0 auto;
+            background: url('./images/qa_bg.png') no-repeat center;
+            background-size: 1106px 2200px;
+        }
+
+        .qa-content {
+            width: 1038px;
+            margin: 0 auto;
+            padding-top: 162px;
+        }
+
+        .qa-card {
+            background: rgba(238, 243, 255, 0.96);
+            border-radius: 8px;
+            padding: 18px 24px 16px;
+            margin-bottom: 16px;
+        }
+
+        .qa-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .qa-card-index {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: #007AC3;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .qa-card-title {
+            color: #007AC3;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .qa-item {
+            padding: 10px 0 12px;
+        }
+
+        .qa-item+.qa-item {
+            border-top: 1px dashed #007AC3;
+        }
+
+        .qa-row {
+            color: #333;
+            font-size: 16px;
+            line-height: 32px;
+            font-weight: 400;
+        }
+
+        .qa-item>.qa-row:first-of-type {
+            font-weight: 700;
+        }
+
+        .qa-label {
+            display: inline-block;
+            min-width: 24px;
+            color: #333;
+        }
+
+        .qa-note {
+            margin-top: 4px;
+            padding-left: 24px;
+            color: #555;
+            font-size: 16px;
+            line-height: 32px;
+            font-weight: 400;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="./images/logo.png" alt="">
+        </div>
+        <div class="nav-menu">
+            <div class="nav-item">走进东吴</div>
+            <div class="nav-item">招聘公告</div>
+            <div class="nav-item">招聘岗位</div>
+            <div class="nav-item active">Q＆A</div>
+            <div class="nav-item">公司官网</div>
+        </div>
+    </nav>
+
+    <!-- Banner - 整图 -->
+    <section class="banner">
+        <img src="./images/banner.png" alt="共享共赢 敢创未来" style="display:block;width: 100%; min-width: 1200px">
+    </section>
+
+    <!-- Q & A -->
+    <section class="section" style="margin-top: -296px; padding: 0; position: relative; z-index: 10;">
+        <div class="qa-container">
+            <div class="qa-content">
+                <div class="qa-card">
+                    <div class="qa-card-header">
+                        <span class="qa-card-index">01</span>
+                        <h3 class="qa-card-title">关于此次总部招聘要求</h3>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>此次招聘招聘对象是？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>此次春季实习生招聘只针对毕业时间为2026年8月1日至2027年7月31日且符合应聘条件的毕业生，境内院校毕业时间以毕业证书落款时间为准，境外院校毕业时间以教留服认证书落款时间为准。毕业时间或应聘条件不符的简历投递和测评结果均属无效。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>对实习时间有什么要求？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>部门将根据情况统一安排实习，实习时间为1个月及以上。</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-card-header">
+                        <span class="qa-card-index">02</span>
+                        <h3 class="qa-card-title">关于总部应聘流程</h3>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>如何申请？截止日期是什么时候？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>我们采用网申的形式进行简历收集，你可使用PC端或移动端进行简历投递。</p>
+                        <p class="qa-note">在职位申请页面选择想要申请的职位点击注册，您可按网申系统显示的字段内容进行填写，也可自行上传个人简历，请务必根据系统的提示完整填写申请表信息并提交，即成功申请。</p>
+                        <p class="qa-note">网申截止时间为2026年5月21日24:00。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>什么时候发送面试通知？什么时候面试？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>我们会根据简历筛选结果，于5月中上旬及6月中上旬分批次发送面试通知，面试会在5月中旬及6月中旬分批次进行。因个人原因不能面试者，公司不再另行安排补面。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>面试地点在哪里？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>根据业务部门具体要求决定线上面试或者线下面试。</p>
+                        <p class="qa-note">① 线上面试：视频或电话面试；</p>
+                        <p class="qa-note">② 线下面试：上海、北京、深圳等地。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>面试形式是怎样的？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>根据职位情况采取现场、视频或电话等方式进行，具体面试方式以本人收到通知为准。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>如何查询面试结果？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>公司电话、邮件、短信等方式通知被录用的同学，未录用者不再另行通知。</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-card-header">
+                        <span class="qa-card-index">03</span>
+                        <h3 class="qa-card-title">关于总部应聘职位</h3>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>可以申请几个职位？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>每位同学可选择1个职位。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>申请职位完成后，我还可以更改网申表的信息吗？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>申请提交之后，无法更改网申表信息。请大家在提交时认真检查，以免影响申请。同时，请大家尽早完成网申，以免错过后面的安排。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>申请职位完成后，是否还可以更改申请职位？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>① 未参与面试：无法更改；</p>
+                        <p class="qa-note">② 已参与面试：请与安排面试的校招工作人员联系，但调整是否能被接受还需结合部门的需求和同一职位上其他候选人数量和质量而定。并且由于职位和地区的要求可能有所不同，部分面试流程可能需要重新进行。</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-card-header">
+                        <span class="qa-card-index">04</span>
+                        <h3 class="qa-card-title">其他</h3>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>今年春季实习生职位申请的渠道有哪些？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>①公司官网：搜索东吴证券官网进入“人才与发展”，选择“加入我们”，点击“校园招聘”，对具体岗位进行在线申请。</p>
+                        <p class="qa-note">②公司官微：关注“东吴证券招聘”微信公众号，选择“招贤纳士--校园招聘”，对具体岗位进行在线申请。</p>
+                        <p class="qa-note">③第三方平台：通过“应届生求职网”、“前程无忧”第三方招聘网站，搜索“东吴证券”，对具体岗位进行在线申请。</p>
+                    </div>
+                    <div class="qa-item">
+                        <p class="qa-row"><span class="qa-label">Q:</span>如果有关今年春季实习生招聘还有问题，我应该去哪里询问呢？</p>
+                        <p class="qa-row"><span class="qa-label">A:</span>① 技术问题：如果遇到技术问题，如简历投递不成功等，可拨打我们的技术合作方客服热线：400-650-6886。</p>
+                        <p class="qa-note">② 招聘问题：可以关注我们的微信公众号“东吴证券招聘”，有任何疑问可以在微信平台给HR留言，也可拨打人力资源部电话，东吴证券联系电话：0512-62938708，东吴证券子公司（东吴基金）联系电话：021-50509888-8316。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: -300px;">
+        <img src="./images/footer.png" alt="" style="display:block; width: 100%;">
+    </footer>
+</body>
+
+</html>
