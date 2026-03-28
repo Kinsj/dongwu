@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.3">
     <title>东吴证券 2026 春季实习生招聘</title>
+    <script>
+        (function () {
+            var isMobileViewport = window.matchMedia('(max-width: 768px)').matches
+                || window.matchMedia('(max-device-width: 768px)').matches
+                || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+            var isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobileViewport || isMobileUA) {
+                document.documentElement.classList.add('is-mobile');
+            }
+        })();
+    </script>
     <style>
         * {
             margin: 0;
@@ -20,6 +32,11 @@
 
         body {
             font-family: 'Source Han Sans SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        .is-mobile body {
+            min-width: 0;
+            overflow-x: hidden;
         }
 
         .landing {
@@ -46,6 +63,21 @@
             background-size: contain;
             text-indent: -9999px;
             overflow: hidden;
+        }
+
+        .is-mobile .landing {
+            min-width: 0;
+            min-height: 100svh;
+            height: 100svh;
+            background: url('./images/mobile_enter.png') no-repeat top center;
+            background-size: 100% auto;
+        }
+
+        .is-mobile .enter-btn {
+            margin-top: 93vw;
+            width: 59vw;
+            height: 26vw;
+            min-width: 0;
         }
 
         @media screen and (max-width: 768px) {

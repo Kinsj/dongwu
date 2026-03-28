@@ -113,7 +113,8 @@
             <a class="nav-item active" href="./zpgonggao.html">招聘公告</a>
             <a class="nav-item" href="./zpgangwei.html">招聘岗位</a>
             <a class="nav-item" href="./qa.html">Q＆A</a>
-            <a class="nav-item" href="http://www.dwzq.com.cn/" target="_blank" rel="noopener noreferrer">公司官网</a>
+            <a class="nav-item" href="http://www.dwzq.com.cn/" target="_blank" rel="noopener noreferrer"
+                onclick="return handleOfficialSiteClick(event, this);">公司官网</a>
         </div>
     </nav>
 
@@ -124,7 +125,7 @@
 
     <!-- 招聘计划 - 整图 -->
     <section class="section" style="margin-top: -296px; padding: 0;">
-        <img src="./images/requirement.png" alt="招聘计划" style="display:block;">
+        <img src="./images/zpjihua.png" alt="招聘计划" style="display:block;">
     </section>
 
     <!-- 招聘需求 - 整图 -->
@@ -142,6 +143,15 @@
         <img src="./images/footer.png" alt="" style="display:block; width: 100%;">
     </footer>
 
+    <script>
+        function handleOfficialSiteClick(event, link) {
+            event.preventDefault();
+            if (window.confirm('您即将离开本站，前往外部网站“公司官网”，是否继续？')) {
+                window.open(link.href, '_blank', 'noopener');
+            }
+            return false;
+        }
+    </script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <script src="js/adapter.min.js"></script>
 </body>
