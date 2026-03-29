@@ -152,7 +152,7 @@
             border: none;
             border-radius: 8px;
             background: #eef3ff;
-            color: #126ef9;
+            color: #007ac3;
             font-size: 14px;
             font-weight: 700;
             text-align: center;
@@ -206,7 +206,7 @@
 
         .job-detail-meta strong,
         .job-detail-section-title {
-            color: #126ef9;
+            color: #007ac3;
             font-size: 16px;
             font-weight: 800;
         }
@@ -221,7 +221,7 @@
         }
 
         .job-opening {
-            border-radius: 6px;
+            border-radius: 0 30px 0 0;
             overflow: hidden;
             background: #eef3ff;
             box-shadow: 0 4px 14px rgba(57, 105, 197, 0.08);
@@ -241,9 +241,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 22px 0 32px;
+            padding: 0 30px 0 24px;
             cursor: pointer;
             text-align: left;
+            border-radius: 0 30px 0 0;
+        }
+
+        .job-opening-header[aria-expanded="true"] {
+            border-radius: 0 30px 0 0;
         }
 
         .job-opening-title {
@@ -254,23 +259,15 @@
         }
 
         .job-opening-toggle {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #fff;
-            color: #126ef9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            line-height: 1;
-            font-weight: 700;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
+            margin: 0;
         }
 
         .job-opening-body {
-            padding: 22px 34px 28px 48px;
-            color: #333;
+            padding: 22px 30px 28px 24px;
+            color: #333333;
             font-size: 14px;
             line-height: 1.9;
             font-weight: 600;
@@ -697,8 +694,8 @@
                 tab: '东吴证券子公司 - 东吴基金',
                 departments: [
                     {
-                        name: '东吴基金',
-                        title: '东吴基金校园招聘岗位',
+                        name: '东吴基金行业研究岗',
+                        title: '东吴基金行业研究岗（2名，上海）',
                         positions: [
                             {
                                 title: '东吴基金行业研究岗（2名，上海）',
@@ -714,7 +711,13 @@
                                     '热爱研究工作，具备较强的研究分析能力和行业洞察力，有相关行业研究实习经历者优先；',
                                     '勤奋努力有韧劲，能够独立思考、快速学习，具备较强的语言表达能力和主动沟通意识。'
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        name: '东吴基金机构销售岗',
+                        title: '东吴基金机构销售岗（4名，上海、北京、深圳）',
+                        positions: [
                             {
                                 title: '东吴基金机构销售岗（4名，上海、北京、深圳）',
                                 major: '经济、金融、市场营销等相关专业',
@@ -731,7 +734,13 @@
                                     '积极乐观，性格外向，具有较强的人际交往能力；',
                                     '具备较强的抗压能力和团队合作精神，能接受经常性出差拜访客户。'
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        name: '东吴基金渠道销售岗',
+                        title: '东吴基金渠道销售岗（4名，上海、北京、深圳）',
+                        positions: [
                             {
                                 title: '东吴基金渠道销售岗（4名，上海、北京、深圳）',
                                 major: '经济、金融、市场营销等相关专业',
@@ -801,7 +810,7 @@
                         <div class="job-opening">
                             <button class="job-opening-header" type="button" data-opening-index="${index}">
                                 <span class="job-opening-title">${position.title}</span>
-                                <span class="job-opening-toggle">${isExpanded ? '−' : '+'}</span>
+                                <img class="job-opening-toggle" src="${isExpanded ? './images/minus.png' : './images/plus.png'}" alt="">
                             </button>
                             ${isExpanded ? `
                             <div class="job-opening-body">
