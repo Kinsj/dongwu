@@ -810,6 +810,9 @@
                     if (position.title === '博士后研究员（2名，上海、苏州）' && itemIndex === 0) {
                         return `<li>${item}</li>`;
                     }
+                    if (position.title === '博士后研究员（2名，上海、苏州）') {
+                        return `<li>${itemIndex}. ${item}</li>`;
+                    }
                     return `<li>${itemIndex + 1}. ${item}</li>`;
                 }).join('');
                 return `
