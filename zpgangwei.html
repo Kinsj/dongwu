@@ -806,6 +806,12 @@
                 <div class="job-openings">
                     ${department.positions.map((position, index) => {
                 const isExpanded = expandedOpeningIndexes.includes(index);
+                const responsibilitiesHtml = position.responsibilities.map((item, itemIndex) => {
+                    if (position.title === '博士后研究员（2名，上海、苏州）' && itemIndex === 0) {
+                        return `<li>${item}</li>`;
+                    }
+                    return `<li>${itemIndex + 1}. ${item}</li>`;
+                }).join('');
                 return `
                         <div class="job-opening">
                             <button class="job-opening-header" type="button" data-opening-index="${index}">
@@ -819,7 +825,7 @@
                                 <div class="job-detail-section">
                                     <div class="job-detail-section-title">岗位职责：</div>
                                     <ul class="job-detail-list">
-                                        ${position.responsibilities.map((item, itemIndex) => `<li>${itemIndex + 1}. ${item}</li>`).join('')}
+                                        ${responsibilitiesHtml}
                                     </ul>
                                 </div>
                                 <div class="job-detail-section">
