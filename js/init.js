@@ -20,9 +20,9 @@ if (
 ) {
   new WechatShare({
     link: getShareLink(), // 微信分享链接
-    imgUrl: getBasePath() + "images/logo.png", // 微信分享logo
-    title: document.title || "东吴证券2026校园招聘", // 微信分享标题
-    desc: "东吴证券2026校园招聘，欢迎关注招聘公告、岗位信息与申请安排。", // 微信分享描述
+    imgUrl: getBasePath() + "images/share.jpg", // 微信分享图
+    title: "东吴证券2026春季校园招聘", // 微信分享标题
+    desc: "共享共赢，敢创未来", // 微信分享描述
   });
 }
 
