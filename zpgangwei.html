@@ -790,9 +790,7 @@
                 return;
             }
             jobList.innerHTML = currentTab.departments.map((item, index) => `
-                <button class="job-list-item ${index === activePositionIndex ? 'is-active' : ''}" data-position-index="${index}">
-                    ${item.name}
-                </button>
+                <button class="job-list-item ${index === activePositionIndex ? 'is-active' : ''}" data-position-index="${index}">${item.name}</button>
             `).join('');
         }
 
