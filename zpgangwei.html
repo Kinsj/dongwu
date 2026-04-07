@@ -364,6 +364,41 @@
             return false;
         }
 
+        const applyLinkMap = {
+            '投资银行业务管理委员会||投行经理助理': 'https://dwzq.zhiye.com/campus/detail?jobAdId=c5f57052-db23-44b7-a567-66f7bef14483',
+            '固定收益业务管理委员会||债券承做助理': 'https://dwzq.zhiye.com/campus/detail?jobAdId=2d32ec29-77c1-4605-a553-b6c6cb9dc2c5',
+            '研究所||研究助理（总量研究）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=2475b5d8-30e7-44e7-81e6-adc3cf26c945',
+            '研究所||研究助理（金融工程）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=0f15acbd-f0ac-419a-93b1-6b1a8da38210',
+            '研究所||研究助理（大金融）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=91fc6024-3699-4c2f-8eab-064f609043f0',
+            '研究所||研究助理（上游能源）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=b5eee46b-9661-40c1-841b-61dd39772192',
+            '研究所||研究助理（价值制造）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=eca439dd-520b-45b4-ae30-3236a8617720',
+            '研究所||研究助理（大消费）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=3c4c507b-971a-496e-ba23-2131bb3411c5',
+            '研究所||研究助理（TMT）': 'https://dwzq.zhiye.com/campus/detail?jobAdId=95a49f85-1362-46fd-9a49-f07eac71d113',
+            '研究所||机构销售助理': 'https://dwzq.zhiye.com/campus/detail?jobAdId=025546e2-51df-41f6-bb23-e86508470267',
+            '债券投资总部||销售交易助理': 'https://dwzq.zhiye.com/campus/detail?jobAdId=375aaec2-b327-4e1b-b90b-eb0865485bd5',
+            '资产管理总部||研究助理': 'https://dwzq.zhiye.com/campus/detail?jobAdId=0c0e9c25-113b-4d66-b3d7-e6bb1e9acc24',
+            '资产管理总部||渠道销售助理': 'https://dwzq.zhiye.com/campus/detail?jobAdId=02e73d7e-6c11-4cf2-a1a0-34e7f462d77f',
+            '信息技术总部||AI算法工程师': 'https://dwzq.zhiye.com/campus/detail?jobAdId=9a6f1ea3-5bd8-444f-8d88-e3890940a952',
+            '信息技术总部||AI开发工程师': 'https://dwzq.zhiye.com/campus/detail?jobAdId=196c1bce-0413-4ef8-8760-71be6bcd2893',
+            '规划创新部 （博士后创新实践基地）||博士后研究员': 'https://dwzq.zhiye.com/campus/detail?jobAdId=586b23e5-ee24-4d2a-a3d1-666d2c78fe49',
+            '东吴基金行业研究岗||东吴基金行业研究岗': 'https://dwzq.zhiye.com/campus/detail?jobAdId=667031e3-fce8-42bc-b8a5-c5bff5ab6af1',
+            '东吴基金机构销售岗||东吴基金机构销售岗': 'https://dwzq.zhiye.com/campus/detail?jobAdId=1e77623a-5e90-4f8f-8426-a3e8ff948fc7',
+            '东吴基金渠道销售岗||东吴基金渠道销售岗': 'https://dwzq.zhiye.com/campus/detail?jobAdId=98bde2f7-1ae0-4359-a89e-da61ef2b89bf'
+        };
+
+        function normalizeApplyKey(value) {
+            return String(value || '')
+                .replace(/\s+/g, ' ')
+                .replace(/（[^（）]*\d+名[^（）]*）$/, '')
+                .trim();
+        }
+
+        function getApplyUrl(departmentName, positionTitle) {
+            const departmentKey = normalizeApplyKey(departmentName);
+            const positionKey = normalizeApplyKey(positionTitle);
+            return applyLinkMap[`${departmentKey}||${positionKey}`] || '';
+        }
+
         const jobData = [
             {
                 tab: '东吴证券',
@@ -447,7 +482,7 @@
                                     '熟练使用办公软件，至少熟练掌握一门计算机编程语言(Python、R、Matlab等)；',
                                     '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
                                     '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
-                                    '细分子领域：金融工程、金融产品等。'
+                                    '金融工程细分子领域：金融工程、金融产品等。'
                                 ]
                             },
                             {
@@ -523,7 +558,7 @@
                                     '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
                                     '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
                                     '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
-                                    '大消费行业细分子领域：医药、食品饮料、批发零售与社会服务、纺织服装&轻工&家电等。'
+                                    '大消费行业细分子领域：医药、食品饮料、批发零售&社会服务、纺织服装&轻工&家电等。'
                                 ]
                             },
                             {
@@ -542,7 +577,7 @@
                                     '擅长写作、具有逻辑思考能力、财务功底扎实，熟练使用office、wind等工具，具有行研实习经历者优先；',
                                     '工作踏实勤奋、主动性强、乐观进取，对证券投资有浓厚兴趣；',
                                     '每周实习3天以上，实习周期3个月以上，通过季度考核者方能留用至下季度，并优先考虑留用；',
-                                    'TMT行业细分子领域：传媒互联网及海外研究、电子、计算机、通信等。'
+                                    'TMT行业细分子领域：传媒互联网&海外研究、电子、计算机、通信等。'
                                 ]
                             },
                             {
@@ -807,6 +842,7 @@
                 <div class="job-openings">
                     ${department.positions.map((position, index) => {
                 const isExpanded = expandedOpeningIndexes.includes(index);
+                const applyUrl = getApplyUrl(department.name, position.title);
                 const responsibilitiesHtml = position.responsibilities.map((item, itemIndex) => {
                     if (position.title === '博士后研究员（2名，上海、苏州）' && itemIndex === 0) {
                         return `<li>${item}</li>`;
@@ -839,7 +875,7 @@
                                     </ul>
                                 </div>
                                 <div class="job-detail-action">
-                                    <button class="job-apply-btn" type="button">立即申请</button>
+                                    <button class="job-apply-btn" type="button" data-apply-url="${applyUrl}">立即申请</button>
                                 </div>
                             </div>
                             ` : ''}
@@ -879,6 +915,17 @@
         });
 
         jobDetailBody.addEventListener('click', function (event) {
+            const applyButton = event.target.closest('.job-apply-btn');
+            if (applyButton) {
+                const applyUrl = applyButton.dataset.applyUrl;
+                if (applyUrl) {
+                    window.open(applyUrl, '_blank', 'noopener');
+                } else {
+                    window.alert('当前岗位申请链接暂未配置，请稍后再试。');
+                }
+                return;
+            }
+
             const button = event.target.closest('[data-opening-index]');
             if (!button) {
                 return;
